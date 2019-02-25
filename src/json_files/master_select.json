@@ -1,0 +1,15 @@
+{
+    "entity_type": {
+        "Corporation" : "Corporation",
+        "S Corporation" : "S Corporation",
+        "C Corporation" : "C Corporation",
+        "Limited Liability Company" : "Limited Liability Company",
+        "Non-Profit Organization" : "Non-Profit Organization",
+        "Sole Proprietorship" : "Sole Proprietorship",
+        "General Partnership" : "General Partnership",
+        "Limited Partnership" : "Limited Partnership",
+        "Limited Liability Partnership" : "Limited Liability Partnership",
+        "Other" : "Other"
+    }
+    
+}

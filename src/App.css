@@ -1,0 +1,143 @@
+html, body, .root, .carousel, .home_wrapper {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+.navigationBar {
+	height: 100px;
+	vertical-align: middle;
+	display: table-cell;
+	margin: 30px 0;
+}
+.navigation_wrapper {
+	height: 54px;
+	vertical-align: middle;
+	display: table-cell;
+}
+.nav>li {
+	display: inline-block;
+}
+
+/* Titles Section */
+.title-container__title {
+	color: red;
+	font-weight: 800;
+}
+.title_text {
+	margin-bottom: 50px;
+}
+.btn-primary {
+	border-radius: 20px;
+	padding: 8px 40px;
+	background: #000;
+	border-color: #000;
+}
+.form-control {
+	border-radius: 0;
+	border: none;
+	border-bottom: 1px solid #666;
+	box-shadow: none;
+	width: 80%;
+	padding-left: 0;
+	margin-bottom: 20px;
+}
+.form-control:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.registerwithustext p {
+	margin-bottom: 30px;
+}
+
+/* Work In pRogress modal */
+.wipModalBody {
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	color: red;
+	text-transform: uppercase;
+	margin-top: 30px;
+}
+.modal-footer {
+	border: 0;
+	width: 100%;
+	text-align: center;
+}
+
+/* Register Page CSS */
+.reg-center{
+	text-align: center;
+}
+.bold-head{
+	font-weight: bold;
+	font-size: 35px;
+}
+.bold{
+	font-weight: bold;
+	font-size: 17px;
+}
+.wd{
+	width: 1060px;
+}
+.hr{
+	border-bottom: 2px solid black;
+	margin-bottom: 10px;
+}
+.right{
+	float: right;
+}
+.text-red{
+	color: red;
+}
+.btn-cancel {
+	border-radius: 20px;
+	padding: 8px 40px;
+	background: #fff;
+	border-color: #000;
+}
+ 
+
+/* Media Queries */
+@media (min-width: 992px) {
+	.container {
+		max-width: 970px;
+		width: 100%;
+	}
+}
+
+@media (min-width: 768px) {
+	.container {
+		max-width: 90vw;
+		width: 100%;
+	}
+}
+@media (max-width: 992px) {
+	.title-container__subtitle {
+		font-size: 15px;
+	}
+	.title-container__title {
+		font-size: 35px;
+		margin-top: 155px;
+		text-transform: uppercase;
+	}
+	input[type="text"],
+	button	{
+		width: 100%;
+		max-width: inherit;
+	}
+	.form-container {
+		padding-right: 50px;
+	}
+	.weather-info {
+		margin: 30px 0;
+	}
+	.title-container {
+		height:50vh;
+		background-position: top center;
+	}
+	.main,
+	.wrapper	{
+		height: 100%;
+	}
+}
