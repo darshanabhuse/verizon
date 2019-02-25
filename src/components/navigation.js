@@ -43,12 +43,6 @@ class Navigation extends React.Component {
 							<div className="navigation_wrapper">
 								<Nav variant="tabs">
 									<NavItem>
-										<NavLink onClick={this.handleClick}><b>Devices & Modules</b></NavLink>
-									</NavItem>
-									<NavItem>
-										<Link to='/'><NavLink  href="/" ><b>Get Certified</b></NavLink></Link>
-									</NavItem>
-									<NavItem>
 										<NavLink onClick={this.handleClick}><b>FAQ</b></NavLink>
 									</NavItem>
 								</Nav>

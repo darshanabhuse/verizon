@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from './navigation';
 import Titles from './titles';
+//import Footer from './footer';
 
 
 class App extends React.Component {
@@ -12,7 +13,6 @@ class App extends React.Component {
 				<div className="row">
 					<Titles />
 				</div>
-				
 			</div>
 		)
 	}

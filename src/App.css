@@ -17,6 +17,11 @@ html, body, .root, .carousel, .home_wrapper {
 .nav>li {
 	display: inline-block;
 }
+.nav-link {
+	cursor: pointer;
+	font-size: 16px;
+	color: #000;
+}
 
 /* Titles Section */
 .title-container__title {
@@ -96,7 +101,17 @@ html, body, .root, .carousel, .home_wrapper {
 	background: #fff;
 	border-color: #000;
 }
- 
+.tab-content {
+	padding-bottom: 50px;
+}
+.tab-pane {
+	padding-top: 30px;
+}
+
+.react-inputs-validation__msg___pxv8o.react-inputs-validation__error___2aXSp {
+	color: red;
+	margin-bottom: 10px;
+}
 
 /* Media Queries */
 @media (min-width: 992px) {

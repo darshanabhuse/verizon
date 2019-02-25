@@ -1,43 +1,49 @@
 import React from "react";
 import { Link, Route, Switch } from 'react-router-dom';
 import {
-	Form,
-	FormGroup,
+    Form,
+    FormGroup,
     FormLabel,
     FormControl,
     FormText,
     Button,
     FormCheck
     } from 'react-bootstrap';
+import { Textbox } from "react-inputs-validation";
+//import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import Register from "./register";
 import WIPModal from './wipmodal';
 
 class Titles extends React.Component {
     constructor(...args) {
-		super(...args);
+        super(...args);
 
-		this.state = { modalShow : false };
+        this.state = { 
+            modalShow : false,
+            phone: "",
+            email: ""
+        };
 
-		this.handleClick = this.handleClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
 
-		this.modalClose = this.modalClose.bind(this);
-	}
+        this.modalClose = this.modalClose.bind(this);
+    }
 
-	handleClick(event) {
+    handleClick(event) {
         console.log(this.state.modalShow);
         event.preventDefault();
-		this.setState({
-			modalShow : true
-		})
-	}
-	modalClose() {
-		console.log(this.state.modalShow);
-		this.setState({
-			modalShow : false
-		})
-	}
+        this.setState({
+            modalShow : true
+        })
+    }
+    modalClose() {
+        console.log(this.state.modalShow);
+        this.setState({
+            modalShow : false
+        })
+    }
     render() {
-
+        const { phone, email } = this.state;
         return (
             <div>
                 <div className="col-lg-12 title_text">
@@ -47,12 +53,34 @@ class Titles extends React.Component {
                 <div className="row">
                     <div className="col-lg-6">
                         <Form onSubmit={this.handleClick}>
-                            <FormGroup controlId="formBasicEmail">
-                                <FormLabel>Username or Email</FormLabel>
-                                <FormControl type="email" placeholder="Username or Email" />
-                                <FormText className="text-muted">
-                                </FormText>
-                            </FormGroup>
+                        <FormLabel>Username or Email</FormLabel>
+                        <Textbox
+                            tabIndex="1" //Optional.[String or Number].Default: -1.
+                            id={"email"} //Optional.[String].Default: "".  Input ID.
+                            name="email" //Optional.[String].Default: "". Input name.
+                            type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
+                            value={email} //Optional.[String].Default: "".
+                            placeholder="Username or Email" //Optional.[String].Default: "".
+                            classNameInput = "form-control"
+                            onChange={(email, e) => {
+                                this.setState({ email });
+                                console.log(e);
+                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                            validationOption={{
+                                name: "email", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
+                                check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
+                                required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
+                                customFunc: email => {
+                                    const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                    if (reg.test(String(email).toLowerCase())) {
+                                        return true;
+                                    } else {
+                                        return "Please Enter valid email address";
+                                    }
+                                }
+                            }}
+                        />
                             <FormGroup controlId="formBasicChecbox">
                                 <FormCheck type="checkbox" label="Remember Me" />
                             </FormGroup>

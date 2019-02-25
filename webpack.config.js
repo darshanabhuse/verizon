@@ -1,16 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { WebpackWarPlugin } = require('webpack-war-plugin');
 
 module.exports = {
    mode: 'development',
    entry: './src/index.js',
    output: {
-      path: path.join(__dirname, '/dist'),
-      filename: 'index.js',
-  },
+      path: path.join(__dirname, '/bundle'),
+      filename: 'index_bundle.js'
+   },
 
    devServer: {
-      inline: true,
+      inline: false,
       port: 8080
    },
    resolveLoader: {
@@ -34,8 +35,9 @@ module.exports = {
       ]
    },
    plugins:[
+      new WebpackWarPlugin(),
       new HtmlWebpackPlugin({
          template: './index.html'
-      })
+      })      
    ]
 }
