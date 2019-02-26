@@ -1549,6 +1549,7 @@ h2 {
     .pt100 {
     padding-top: 50px;
 }
+
 .mb100 {
     margin-bottom: 30px;
 }
@@ -6370,4 +6371,7 @@ h2 {
 #newVisitorCarousel .carousel-content li {
     font-size: 14px!important;
 }
+}
+.home2_heading {
+    color: #897455;
 }

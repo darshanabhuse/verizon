@@ -1,0 +1,2 @@
+export const APP_ID_DEFINED='APP_ID_DEFINED';
+export const APP_ID_NOTDEFINED='APP_ID_NOTDEFINED';

@@ -111,7 +111,7 @@ class Titles extends React.Component {
                     </div>
                     <div className="col-lg-6 registerwithustext">
                         <p><b>Is your company not register With Us yet?</b></p>
-                        <p className="title-container__subtitle">Please <Link to="/register">Register With Us</Link> register with us to get your company's OD Device Certification account set up. </p>
+                        <p className="title-container__subtitle">Please <Link to="/register/1">Register With Us</Link> register with us to get your company's OD Device Certification account set up. </p>
                         <p>This will take you to our registration form where you can supply the information necessary to setup a new company profile and access the Verizon Open Development website. </p>
                     </div>
                     

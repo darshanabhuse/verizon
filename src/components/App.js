@@ -1,19 +1,33 @@
 import React from "react";
 import Navigation from './navigation';
 import Titles from './titles';
-//import Footer from './footer';
+import AppSelectModal from './appselectmodal';
 
 
 class App extends React.Component {
-	
+	constructor(...args) {
+		super(...args);
+
+		this.state = { modalShow : true };
+
+		this.handleClick = this.handleClick.bind(this);
+
+		this.modalClose = this.modalClose.bind(this);
+	}
+
+	handleClick() {
+		this.setState({
+			modalShow : true
+		})
+	}
+	modalClose() {
+		this.setState({
+			modalShow : false
+		})
+	}
 	render() {
 		return (
-			<div className="container">
-				<Navigation />
-				<div className="row">
-					<Titles />
-				</div>
-			</div>
+			<AppSelectModal show={this.state.modalShow} onHide={this.modalClose} />
 		)
 	}
 }

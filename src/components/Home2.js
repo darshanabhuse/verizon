@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { signin } from "../actions/signinaction";
 import {connect} from 'react-redux';
 
-class Home extends React.Component {
+class Home2 extends React.Component {
 	constructor() {
         super();
 
@@ -42,8 +42,8 @@ class Home extends React.Component {
                                 </ul>
                                 <div className="ng-signin-register">
                                     <div className="signin-group">
-                                        <Link className="dropdown-toggle" data-toggle="dropdown" to="signin/1" id="signInMenu" role="button">
-                                            <strong className="login-text">Sign in </strong></Link><span className="login-text">   &nbsp;&nbsp; </span><Link className="dropdown-toggle" data-toggle="dropdown" to="register/1"  role="button"><strong className="login-text">Register</strong></Link>
+                                        <Link className="dropdown-toggle" data-toggle="dropdown" to="signin/2" id="signInMenu" role="button">
+                                            <strong className="login-text">Sign in </strong></Link><span className="login-text">   &nbsp;&nbsp; </span><Link className="dropdown-toggle" data-toggle="dropdown" to="register/2"  role="button"><strong className="login-text">Register</strong></Link>
                                         
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@ class Home extends React.Component {
                 <div className="partners">
                     <section className="ts-banners">
                         <div className="container">
-                            <h3>VNFM Vendor Portal</h3>
+                            <h3>BIMPaaS</h3>
                         </div>
                     </section>
                 </div>
@@ -68,7 +68,7 @@ class Home extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <h2>Customer/Vendor needs/Problem Statement</h2>
+                                <h2 className="home2_heading">Customer/Vendor needs/Problem Statement</h2>
                             </div>
                         </div>
                         <ul className="black-text-10px">
@@ -77,7 +77,7 @@ class Home extends React.Component {
                         </ul>
                         <div className="row">
                             <div className="col-md-12">
-                                <h2>Solution</h2>
+                                <h2 className="home2_heading">Solution</h2>
                             </div>
                         </div>
                         <ul className="black-text-10px">
@@ -88,7 +88,7 @@ class Home extends React.Component {
                         </ul>
                         <div className="row">
                             <div className="col-md-12">
-                                <h2>Why Verizon</h2>
+                                <h2 className="home2_heading">Why Verizon</h2>
                             </div>
                         </div>
                         <ul className="black-text-10px">
@@ -123,4 +123,4 @@ class Home extends React.Component {
 //         errorMsg: state.signinReducer.data
 //     }
 // }
-export default (Home);
+export default (Home2);
