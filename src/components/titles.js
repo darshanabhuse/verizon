@@ -21,7 +21,8 @@ class Titles extends React.Component {
         this.state = { 
             modalShow : false,
             phone: "",
-            email: ""
+            email: "",
+            password : ""
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -43,7 +44,7 @@ class Titles extends React.Component {
         })
     }
     render() {
-        const { phone, email } = this.state;
+        const { phone, email, password } = this.state;
         return (
             <div>
                 <div className="col-lg-12 title_text">
@@ -79,6 +80,25 @@ class Titles extends React.Component {
                                         return "Please Enter valid email address";
                                     }
                                 }
+                            }}
+                        />
+                        <Textbox
+                            tabIndex="1" //Optional.[String or Number].Default: -1.
+                            id={"password"} //Optional.[String].Default: "".  Input ID.
+                            name="password" //Optional.[String].Default: "". Input name.
+                            type="password" //Optional.[String].Default: "text". Input type [text, password, phone, number].
+                            value={password} //Optional.[String].Default: "".
+                            placeholder="Password" //Optional.[String].Default: "".
+                            classNameInput = "form-control"
+                            onChange={(password, e) => {
+                                this.setState({ password });
+                                console.log(e);
+                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                            validationOption={{
+                                name: "password", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
+                                check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
+                                required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
                             }}
                         />
                             <FormGroup controlId="formBasicChecbox">

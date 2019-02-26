@@ -4,8 +4,7 @@ import {
     FormGroup,
     FormLabel, Button,
     FormControl
-    } from 'react-bootstrap';
-import {Link} from "react-router-dom";
+} from 'react-bootstrap';
 import { Textbox } from "react-inputs-validation";
 
 class PrimaryContact extends React.Component{
@@ -281,7 +280,7 @@ class PrimaryContact extends React.Component{
                 </div>
                 <div className="col-lg-4 right">
                     <Button variant="cancel" type="cancel">Cancel</Button>
-                    <Link to="/"><Button variant="primary" type="submit">Submit</Button></Link>
+                    <Button variant="primary" type="submit">Submit</Button>
                             
                 </div>
             </div>

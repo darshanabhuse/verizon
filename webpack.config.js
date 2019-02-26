@@ -12,7 +12,9 @@ module.exports = {
 
    devServer: {
       inline: false,
-      port: 8080
+      port: 8080,
+      historyApiFallback: true,
+      hot: true
    },
    resolveLoader: {
       modules: [path.join(__dirname, 'node_modules')]

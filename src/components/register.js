@@ -14,8 +14,16 @@ class Register extends React.Component {
 			entity_response : '',
 			country : '',
 			product_type : '',
-			platform : ''
+			platform : '',
+			isAgreementChecked: false,
+			hasNameError: true,
+			hasDescriptionError: true,
+			hasMovieError: true,
+			hasJobError: true,
+			hasAgreementError: true,
+			validate: false
 		};
+		this.validateForm = this.validateForm.bind(this);
 	}
 	componentDidMount () {
         let entity_response = axios.get('../src/json_files/master_select.json').then( response => {
@@ -28,7 +36,27 @@ class Register extends React.Component {
                 }
             );
         });
-    }   
+	}
+	toggleValidating(validate) {
+		this.setState({ validate });
+	}
+	validateForm(e) {
+		e.preventDefault();
+		this.toggleValidating(true);
+		const {
+		  hasNameError,
+		  hasDescriptionError,
+		  hasMovieError,
+		  hasJobError,
+		  hasAgreementError,
+		} = this.state;
+		if (!hasNameError && !hasDescriptionError && !hasMovieError && !hasJobError && !hasAgreementError) {
+		  alert('All validated!');
+		}
+		else {
+			alert('Not Validated');
+		}
+	  }   
 	render() {
 		return (
             <div className="container">
@@ -44,32 +72,35 @@ class Register extends React.Component {
                 </div>
 				
 			</div>
+			<form onSubmit={this.validateForm}>
 			<Tabs id="controlled-tab-example" activeKey={this.state.key} onSelect={key => this.setState({ key })}>
-				<Tab eventKey="general_info" title="General Information" >
-					<GeneralInfo
-						company_name = "Company Name" 
-						country = {this.state.country}
-						entity_response = {this.state.entity_response}
-						>
-					</GeneralInfo>
-				</Tab>
-				<Tab eventKey="product_info" title="Product Information" >
-					<ProductInfo 
-						product_type = {this.state.product_type}
-						platform = {this.state.platform}
-					>
-					</ProductInfo>
-				</Tab>
-				<Tab eventKey="primary_contact" title="Primary Company Contact" >
-					<div className="row">
-						<PrimaryContact 
+				
+					<Tab eventKey="general_info" title="General Information" >
+						<GeneralInfo
+							company_name = "Company Name" 
 							country = {this.state.country}
+							entity_response = {this.state.entity_response}
+							>
+						</GeneralInfo>
+					</Tab>
+					<Tab eventKey="product_info" title="Product Information" >
+						<ProductInfo 
+							product_type = {this.state.product_type}
+							platform = {this.state.platform}
 						>
-						</PrimaryContact>
-					</div>
-				</Tab>
+						</ProductInfo>
+					</Tab>
+					<Tab eventKey="primary_contact" title="Primary Company Contact" >
+						<div className="row">
+							<PrimaryContact 
+								country = {this.state.country}
+							>
+							</PrimaryContact>
+						</div>
+					</Tab>
+				
 			</Tabs>
-			
+			</form>
 			
 		</div>
 		);
