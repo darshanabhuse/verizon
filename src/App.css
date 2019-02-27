@@ -164,3 +164,56 @@ html, body, .root, .carousel, .home_wrapper {
 		height: 100%;
 	}
 }
+
+/*dashboard*/
+.btn-dash {
+    border-radius: 0px;
+    padding: 8px 40px;
+    background:red;
+    border-color: #000;
+}
+.margin-bottom{
+    margin-bottom: 25px;
+}
+.bg-grey{
+    background-color: lightgray;
+}
+.margin-top{
+    margin-top: 25px;
+}
+.dash-head{
+    font-size:30px;
+}
+.search {
+    width: 100%;
+    position: relative
+  }
+ 
+  .searchTerm {
+    float: left;
+    width: 30%;
+    margin-right: 20px;
+  }
+  
+  
+  .searchButton {
+    position: absolute;
+    right: -50px;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .w3-example {
+    background-color: #f1f1f1;
+    padding: 0.01em 16px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+.th-sm{
+    background-color: gray;
+    color: white;
+}

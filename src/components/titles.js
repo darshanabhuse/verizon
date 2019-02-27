@@ -13,6 +13,9 @@ import { Textbox } from "react-inputs-validation";
 //import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import Register from "./register";
 import WIPModal from './wipmodal';
+import {
+	withRouter
+} from 'react-router-dom';
 
 class Titles extends React.Component {
     constructor(...args) {
@@ -22,29 +25,53 @@ class Titles extends React.Component {
             modalShow : false,
             phone: "",
             email: "",
-            password : ""
+            password : "",
+            hasEmailError : true,
+            hasPwdError : true,
+            isFormValid : true
         };
 
         this.handleClick = this.handleClick.bind(this);
 
         this.modalClose = this.modalClose.bind(this);
+        // isFormValid = () => {
+        //     const {hasEmailError, hasPwdError} = this.state
+          
+        //     return hasEmailError && hasPwdError
+        // };
     }
 
-    handleClick(event) {
-        console.log(this.state.modalShow);
-        event.preventDefault();
-        this.setState({
-            modalShow : true
-        })
+    handleClick() {
+        const {
+            email,
+            password,
+            hasEmailError,
+            hasPwdError
+        } = this.state;
+        if(email && password){
+            if(hasEmailError && hasPwdError) {
+                event.preventDefault();
+            }
+            else {
+                event.preventDefault()
+                this.props.history.push('/dashboard');
+            }
+        }
+        else {
+            event.preventDefault();
+            hasEmailError = true;
+            console.log("Nothing in input fields");
+        }
+        
     }
     modalClose() {
-        console.log(this.state.modalShow);
         this.setState({
             modalShow : false
         })
     }
+    
     render() {
-        const { phone, email, password } = this.state;
+        const { isFormValid, email, password } = this.state;
         return (
             <div>
                 <div className="col-lg-12 title_text">
@@ -53,7 +80,7 @@ class Titles extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
-                        <Form onSubmit={this.handleClick}>
+                        <Form onSubmit={this.handleClick} >
                         <FormLabel>Username or Email</FormLabel>
                         <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
@@ -68,6 +95,7 @@ class Titles extends React.Component {
                                 console.log(e);
                             }} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                            validationCallback={res => this.setState({ hasEmailError: res, validate: false })}
                             validationOption={{
                                 name: "email", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
@@ -95,10 +123,12 @@ class Titles extends React.Component {
                                 console.log(e);
                             }} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                            validationCallback={res => this.setState({ hasPwdError: res, validate: false })}
                             validationOption={{
                                 name: "password", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
-                                required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
+                                required: true, 
+                                min: 5//Optional.[Bool].Default: true. To determin if it is a required field.
                             }}
                         />
                             <FormGroup controlId="formBasicChecbox">
@@ -125,4 +155,4 @@ class Titles extends React.Component {
     }
 }
 
-export default Titles;
+export default withRouter(Titles);

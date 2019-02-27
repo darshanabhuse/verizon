@@ -7,6 +7,7 @@ import Register from '../components/register';
 import RegisterDetails from '../components/RegisterDetails';
 import Home from '../components/Home';
 import Home2 from '../components/Home2';
+import Dashboard from '../components/dashboard';
 
 const RegisterRouter = () => {
  
@@ -20,6 +21,7 @@ const RegisterRouter = () => {
                     <Route exact path="/signin/:id" component={AppDetails} />
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/register/:id" component={RegisterDetails} />
+                    <Route exact path="/dashboard" component={Dashboard} />
                 </Switch>
             </BrowserRouter>
             
