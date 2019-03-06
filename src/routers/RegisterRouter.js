@@ -8,20 +8,21 @@ import RegisterDetails from '../components/RegisterDetails';
 import Home from '../components/Home';
 import Home2 from '../components/Home2';
 import Dashboard from '../components/dashboard';
+import AppHome from '../components/apphome';
 
 const RegisterRouter = () => {
  
     return (
         <div>
-            <BrowserRouter>
+            <BrowserRouter basename="/genericusermanagement">
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/home2" component={Home2}/>
-                    <Route exact path="/signin" component={App} />
-                    <Route exact path="/signin/:id" component={AppDetails} />
+                    <Route exact path="/signin" component={AppDetails} />
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/register/:id" component={RegisterDetails} />
                     <Route exact path="/dashboard" component={Dashboard} />
+                    <Route exact path="/application" component={AppHome}/>
                 </Switch>
             </BrowserRouter>
             

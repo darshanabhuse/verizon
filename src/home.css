@@ -189,6 +189,7 @@ header .vz-ts-navbar-nav .vz-ts-dropdown {
 header .navbar .vz-ts-dropdown>a {
     color: #000;
     padding: 0;
+    font-size: 16px;
 }
 header .navbar .vz-ts-dropdown:hover>a {
     color: #747676;
@@ -1683,11 +1684,7 @@ footer .legal .mb10-resp {
     cursor: not-allowed;
 }
 
-@media all and (-ms-high-contrast:none), (-ms-high-contrast:active) {
-    select: :-ms-expand {
-    display: none;
-}
-}.icon-plus {
+.icon-plus {
     height: 10px;
     width: 10px;
     margin-top: 10px;
@@ -2526,11 +2523,7 @@ h2 {
 }.resources .support {
     margin-bottom: 172.5px;
 }
-@media(min-width:769px) {
-    .resources .support .block-0-Gap-3col: nth-child(2) {
-    border-right: 0;
-}
-}.resources .APIs .mr30 {
+.resources .APIs .mr30 {
     width: 50px;
 }
 .resources .TS-portals .block-black-border {
@@ -3728,6 +3721,16 @@ h2 {
 }
 .partners .ts-banners {
     background-image: url(./images/TS_Banners_Partners_80.jpg);
+}
+.dashboard.partners .ts-banners {
+    background-image: url(./images/TS_Banners_Partners_80.jpg);
+    height: 80px;
+    width: 100%;
+    float: left;
+}
+.dashboard.partners {
+    padding: 0;
+    padding-bottom: 25px;
 }
 .partners #five-icons .col-md-2 images {
     width: 112px;
@@ -6375,3 +6378,92 @@ h2 {
 .home2_heading {
     color: #897455;
 }
+/* AppHome CSS*/ 
+.img-width{
+    width:35% !important;
+}
+.left{
+    float: right;
+    font-size: 22px;
+    position: relative;
+    right: 60px;
+    bottom: 10px;
+    padding-top: 15px;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 95px;
+  }
+  
+  .flex-container > div {
+    background-color: #ffff;
+    width: 255px;
+    margin: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 8px;
+    padding-top: 8px;
+    position: relative;
+    color: gray;
+  }
+  .pos{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 75px;
+      width: 70px;
+      background-color:#99b3ff;
+    }
+    .page-background{
+        background:lightgrey;
+    }
+    .height{
+        height: 50px !important;
+    }
+    .table-prop{
+        background-color: #ffff;
+        margin:10px;
+        height: 100%;
+    }
+    .btApp{
+        float: right;
+    padding-top: 20px;
+    color: white !important;
+    padding: 1px 10px !important;
+    background: #000 !important;
+    border-color: #000 !important;
+    border-radius: 20px !important;
+    margin-right: 5px;
+    font-size: 14px !important;
+    }
+    .searchApp {
+        width: 100%;
+        position: relative;
+        float: right;
+        margin-bottom: 25px;
+        margin-right: 5px;
+      }
+      .searchApp .searchTerm{
+        float: right;
+        width: 20%;
+        border-radius: 4px;
+        margin-top: 8px;
+        margin-right: 0px;
+      }
+      .th-Home{
+        background-color: white !important;
+        color: black !important;
+        border-top: 2px solid black !important;
+    }
+      .img-home{
+        width:84% !important;
+        padding-top: 18px !important;
+        padding-right: 13px !important;
+      }
+      .heading{
+        padding-top: 12px;
+       padding-left: 5px;
+        font-size: 23px;
+      }

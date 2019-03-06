@@ -42,8 +42,8 @@ class Home extends React.Component {
                                 </ul>
                                 <div className="ng-signin-register">
                                     <div className="signin-group">
-                                        <Link className="dropdown-toggle" data-toggle="dropdown" to="signin/1" id="signInMenu" role="button">
-                                            <strong className="login-text">Sign in </strong></Link><span className="login-text">   &nbsp;&nbsp; </span><Link className="dropdown-toggle" data-toggle="dropdown" to="register/1"  role="button"><strong className="login-text">Register</strong></Link>
+                                        <Link className="dropdown-toggle" data-toggle="dropdown" to="/signin" id="signInMenu" role="button">
+                                            <strong className="login-text">Sign in </strong></Link><span className="login-text">   &nbsp;&nbsp; </span><Link className="dropdown-toggle" data-toggle="dropdown" to="/register/1"  role="button"><strong className="login-text">Register</strong></Link>
                                         
                                     </div>
                                 </div>

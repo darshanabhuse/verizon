@@ -49,14 +49,14 @@ class PrimaryContact extends React.Component{
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="row">
-                            <div className="col-lg-6">
+                            <div className="col-lg-4">
                                 <Form>
                                     <FormGroup controlId="formBasicEmail">
                                         <FormLabel>Country User resides in<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
                                 </Form>
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-8">
                                 <FormGroup controlId="formControlsSelect">
                                     <FormControl as="select">
                                         {countryOptions}
@@ -66,14 +66,14 @@ class PrimaryContact extends React.Component{
                         </div>
                     </div><div className="col-lg-12">
                         <div className="row">
-                            <div className="col-lg-6">
+                            <div className="col-lg-4">
                                 <Form>
                                     <FormGroup>
                                         <FormLabel>Primary Contact First Name<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
                                 </Form>
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-8">
                             <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"First Name"} //Optional.[String].Default: "".  Input ID.
@@ -105,14 +105,14 @@ class PrimaryContact extends React.Component{
                         </div>
                     </div><div className="col-lg-12">
                         <div className="row">
-                            <div className="col-lg-6">
+                            <div className="col-lg-4">
                                 <Form>
                                     <FormGroup >
                                         <FormLabel>Primary Contact Last Name<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
                                 </Form>
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-8">
                             <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Last Name"} //Optional.[String].Default: "".  Input ID.
@@ -146,14 +146,14 @@ class PrimaryContact extends React.Component{
                 
                     <div className="col-lg-12">
                         <div className="row">
-                            <div className="col-lg-6">
+                            <div className="col-lg-4">
                                 <Form>
                                     <FormGroup>
                                         <FormLabel>Primary Contact Email<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
                                 </Form>
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-8">
                             <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"email"} //Optional.[String].Default: "".  Input ID.
@@ -186,14 +186,14 @@ class PrimaryContact extends React.Component{
                     </div>
                     <div className="col-lg-12">
                         <div className="row">
-                            <div className="col-lg-6">
+                            <div className="col-lg-4">
                                 <Form>
                                     <FormGroup>
                                         <FormLabel>Primary Contact Email confirmation<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
                                 </Form>
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-8">
                             <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Confirmemail"} //Optional.[String].Default: "".  Input ID.
@@ -226,14 +226,14 @@ class PrimaryContact extends React.Component{
                     </div>
                     <div className="col-lg-12">
                         <div className="row">
-                            <div className="col-lg-6">
+                            <div className="col-lg-4">
                                 <Form>
                                     <FormGroup>
                                         <FormLabel>Primary Contact Phone Number<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
                                 </Form>
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-8">
                             <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Phone Number"} //Optional.[String].Default: "".  Input ID.
@@ -267,18 +267,18 @@ class PrimaryContact extends React.Component{
 
                     <div className="col-lg-12">
                         <div className="row">
-                            <div className="col-lg-6">
+                            <div className="col-lg-4">
                                 <FormLabel>Have you been wroking with any VZW contact(s)?
                                             if so,please provide the name(s) of these contacts</FormLabel>
                                 
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-8">
                                 <FormControl type="input" placeholder="Contact Name" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4 right">
+                <div className="col-lg-12 center mar-bot">
                     <Button variant="cancel" type="cancel">Cancel</Button>
                     <Button variant="primary" type="submit">Submit</Button>
                             

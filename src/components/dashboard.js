@@ -3,7 +3,7 @@ import {
     Button
     } from 'react-bootstrap';
     import WIPModal from './wipmodal';
-
+    import { Link } from 'react-router-dom';
 class Dashboard extends React.Component {
 
     constructor(...args) {
@@ -33,10 +33,10 @@ class Dashboard extends React.Component {
         return(
             <div className="container">
                  <div className="row">
-                    <div className="col-lg-12 navigationBar">
+                    <div className="col-lg-12 navigationBar dashboardnav">
                                 <div className="row">
                                     <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                        <img alt="home about section" src="./src/images/logo.png" />
+                                        <img className="home_img_width" alt="home about section" src="/src/images/logo.png" />
                                     </div>
                                     <div className="col-lg-2 col-md-3 col-sm-12 col-xs-12">
                                         <div className="navigation_wrapper">
@@ -50,31 +50,40 @@ class Dashboard extends React.Component {
                                     </div>
                                 </div>
                         </div>
+                        <div className="partners dashboard col-lg-12">
+                          <section className="ts-banners">
+                          </section>
+                      </div>
                  </div>
                  <div className="">
                     <div className="row bg-grey">
                         <div className="col-lg-12 margin-bottom margin-top dash-head">
-                        <strong className="login-text">Company Users</strong>
+                        <strong className="login-text">Application Access To</strong>
                         </div>
                         <div className="col-lg-12 margin-bottom">
-                        <Button onClick={this.handleClick} variant="dash" type="submit">
-                                    Add A New User
+                        <Button onClick={this.handleClick} className="dash" type="submit">
+                        VNFM Vendor Portal
                                 </Button>
                          </div>
                          <div className="w3-example col-lg-12">
                             <h4>List of Company Users</h4>
-                                <div className="margin-top">
+                                <div className="margin-top btn-go">
                                 <div  className="col-lg-3">
                             Search the Users
                          </div>
-                         <div  className="col-lg-8">
-                                <div className="search">
-                                    <input type="text" className="searchTerm"/>
-                                </div>
-                                <Button onClick={this.handleClick} variant="dash" type="submit">
-                                    Go
-                                </Button>
-                               
+                         <div className="row">
+                          <div  className="col-lg-8">
+                                  <div className="search">
+                                      <input type="text" className="searchTerm"/>
+                                  </div>
+                                  <Button onClick={this.handleClick} className="dash" type="submit">
+                                      Go
+                                  </Button>
+                                
+                          </div>
+                          <div className="col-log-4">
+                              <Link to="application"><button className="dash btn btn-primary">Go To Application</button></Link>
+                          </div>
                          </div>
                                 </div>
                         </div>
@@ -106,7 +115,7 @@ class Dashboard extends React.Component {
   </thead>
   <tbody>
     <tr>
-      <td>Tiger Nixon</td>
+      <td>User 1</td>
       <td>System Architect</td>
       <td>Edinburgh</td>
       <td>61</td>
@@ -114,7 +123,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Garrett Winters</td>
+      <td>User 2</td>
       <td>Accountant</td>
       <td>Tokyo</td>
       <td>63</td>
@@ -122,7 +131,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Ashton Cox</td>
+      <td>User 3</td>
       <td>Junior Technical Author</td>
       <td>San Francisco</td>
       <td>66</td>
@@ -130,7 +139,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Cedric Kelly</td>
+      <td>User 4</td>
       <td>Senior Javascript Developer</td>
       <td>Edinburgh</td>
       <td>22</td>
@@ -138,7 +147,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Airi Satou</td>
+      <td>User 5</td>
       <td>Accountant</td>
       <td>Tokyo</td>
       <td>33</td>
@@ -146,7 +155,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Brielle Williamson</td>
+      <td>User 6</td>
       <td>Integration Specialist</td>
       <td>New York</td>
       <td>61</td>
@@ -154,7 +163,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Herrod Chandler</td>
+      <td>User 7</td>
       <td>Sales Assistant</td>
       <td>San Francisco</td>
       <td>59</td>
@@ -162,7 +171,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Rhona Davidson</td>
+      <td>User 8</td>
       <td>Integration Specialist</td>
       <td>Tokyo</td>
       <td>55</td>
@@ -170,7 +179,7 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Colleen Hurst</td>
+      <td>User 9</td>
       <td>Javascript Developer</td>
       <td>San Francisco</td>
       <td>39</td>
@@ -178,53 +187,14 @@ class Dashboard extends React.Component {
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
     <tr>
-      <td>Sonya Frost</td>
+      <td>User 10</td>
       <td>Software Engineer</td>
       <td>Edinburgh</td>
       <td>23</td>
       <td>2008/12/13</td>
       <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
     </tr>
-    <tr>
-      <td>Jena Gaines</td>
-      <td>Office Manager</td>
-      <td>London</td>
-      <td>30</td>
-      <td>2008/12/19</td>
-      <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
-    </tr>
-    <tr>
-      <td>Quinn Flynn</td>
-      <td>Support Lead</td>
-      <td>Edinburgh</td>
-      <td>22</td>
-      <td>2013/03/03</td>
-      <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
-    </tr>
-    <tr>
-      <td>Charde Marshall</td>
-      <td>Regional Director</td>
-      <td>San Francisco</td>
-      <td>36</td>
-      <td>2008/10/16</td>
-      <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
-    </tr>
-    <tr>
-      <td>Haley Kennedy</td>
-      <td>Senior Marketing Designer</td>
-      <td>London</td>
-      <td>43</td>
-      <td>2012/12/18</td>
-      <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a></td>
-    </tr>
-    <tr>
-      <td>Tatyana Fitzpatrick</td>
-      <td>Regional Director</td>
-      <td>London</td>
-      <td>19</td>
-      <td>2010/03/17</td>
-      <td><a href="javascript:void(0)"><span onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span onClick={this.handleClick}>Delete</span></a><a href="javascript:void(0)"><span onClick={this.handleClick}>Go</span></a></td>
-    </tr>
+    
   </tbody>
 </table>
 </div>

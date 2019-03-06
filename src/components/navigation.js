@@ -35,8 +35,8 @@ class Navigation extends React.Component {
 			<div className="row">
 				<div className="col-lg-12 navigationBar">
 					<div className="row">
-						<div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-							<Link to='/'><img alt="home about section" src="/src/images/logo.png" /></Link>
+						<div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
+							<Link to='/'><img className="home_img_width" alt="home about section" src="/src/images/logo.png" /></Link>
 						</div>
 
 						<div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -49,6 +49,10 @@ class Navigation extends React.Component {
 							</div>
 						</div>
 					</div>
+					<div className="partners">
+                    <section className="ts-banners">
+                    </section>
+                </div>
 				</div>
 				<WIPModal show={this.state.modalShow} onHide={this.modalClose} />
 			</div>

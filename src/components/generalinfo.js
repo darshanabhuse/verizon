@@ -29,7 +29,16 @@ class GeneralInfo extends React.Component{
     render(){
         const {
             country,
-            entity_response
+            entity_response,
+            company_name,
+            entity_type,
+            company_website,
+            phone_number,
+            h_street,
+            h_city,
+            h_state,
+            h_country,
+            h_zipcode
         } = this.props;
         const {Zipcode ,CompanyName, CompanyWebsite,PhoneNumber,StateProvince,City,StreetAddress} = this.state;
         let listItems = entity_response;
@@ -62,10 +71,10 @@ class GeneralInfo extends React.Component{
             <div className="row">
                 <div className="col-lg-12">
                     <div className="row">
-                        <div className="col-lg-6">
+                        <div className="col-lg-4">
                             <FormLabel>Complete Legal name of company d/b/a (if doing business as another entity,please identify)<span className="text-red">*</span></FormLabel>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-lg-8">
                         <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Company Name"} //Optional.[String].Default: "".  Input ID.
@@ -98,10 +107,10 @@ class GeneralInfo extends React.Component{
             </div>
             <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>Company Entity Type<span className="text-red">*</span></FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                         <FormGroup controlId="formControlsSelect">
                         <FormControl as="select">
                             {arr}
@@ -112,10 +121,10 @@ class GeneralInfo extends React.Component{
             </div>
            <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>Company Website-homepage URL<span className="text-red">*</span><p className="right">Https://</p></FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                     <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Company Website"} //Optional.[String].Default: "".  Input ID.
@@ -148,10 +157,10 @@ class GeneralInfo extends React.Component{
             </div>
             <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>Company Phone Number</FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                     <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Phone Number"} //Optional.[String].Default: "".  Input ID.
@@ -192,10 +201,10 @@ class GeneralInfo extends React.Component{
             <div className="row">
             <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>Street Address<span className="text-red">*</span></FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                     <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Street Address"} //Optional.[String].Default: "".  Input ID.
@@ -228,10 +237,10 @@ class GeneralInfo extends React.Component{
             </div>
             <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>City<span className="text-red">*</span></FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                     <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"City"} //Optional.[String].Default: "".  Input ID.
@@ -264,10 +273,10 @@ class GeneralInfo extends React.Component{
             </div>
             <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>State/Province<span className="text-red">*</span></FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                     <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"State/Province"} //Optional.[String].Default: "".  Input ID.
@@ -300,10 +309,10 @@ class GeneralInfo extends React.Component{
             </div>
             <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>Country<span className="text-red">*</span></FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                         <FormGroup controlId="formControlsSelect">
                             <FormControl as="select">
                                 {countryOptions}
@@ -314,10 +323,10 @@ class GeneralInfo extends React.Component{
             </div>
             <div className="col-lg-12">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <FormLabel>Zipcode<span className="text-red">*</span></FormLabel>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                     <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Zipcode"} //Optional.[String].Default: "".  Input ID.

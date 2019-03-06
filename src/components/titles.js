@@ -80,8 +80,7 @@ class Titles extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
-                        <Form onSubmit={this.handleClick} >
-                        <FormLabel>Username or Email</FormLabel>
+                        <Form className="signin_form" onSubmit={this.handleClick} >
                         <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"email"} //Optional.[String].Default: "".  Input ID.
@@ -139,7 +138,7 @@ class Titles extends React.Component {
                             </Button>
                         </Form>
                     </div>
-                    <div className="col-lg-6 registerwithustext">
+                    <div className="col-lg-6 registerwithustext bgcolor">
                         <p><b>Is your company not register With Us yet?</b></p>
                         <p className="title-container__subtitle">Please <Link to="/register/1">Register With Us</Link> register with us to get your company's OD Device Certification account set up. </p>
                         <p>This will take you to our registration form where you can supply the information necessary to setup a new company profile and access the Verizon Open Development website. </p>
