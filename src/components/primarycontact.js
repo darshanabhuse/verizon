@@ -12,23 +12,20 @@ class PrimaryContact extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            FirstName : '',
-            LastName:'',
-            email :'',
             Confirmemail :'',
-            PhoneNumber :''
-     };
+        };
         
     }
 
     render(){
         const {
             country,
-            FirstName,
-            LastName,
-            email ,
+            pcfn,
+            pcln,
+            pcemail ,
             Confirmemail,
-            PhoneNumber
+            pcphone,
+            vzwcontact
         } = this.props;
         let countryItems = country;
         let countryOptions = '';
@@ -58,7 +55,7 @@ class PrimaryContact extends React.Component{
                             </div>
                             <div className="col-lg-8">
                                 <FormGroup controlId="formControlsSelect">
-                                    <FormControl as="select">
+                                    <FormControl as="select" onChange={this.props.onPCCountryChangeValue} >
                                         {countryOptions}
                                     </FormControl>
                                 </FormGroup> 
@@ -79,26 +76,15 @@ class PrimaryContact extends React.Component{
                             id={"First Name"} //Optional.[String].Default: "".  Input ID.
                             name="First Name" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={FirstName} //Optional.[String].Default: "".
+                            value={pcfn} //Optional.[String].Default: "".
                             placeholder="First Name" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(FirstName, e) => {
-                                this.setState({ FirstName });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onPCFNameChangeValue}//Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "First Name", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
                             }}
                         />
                             </div>
@@ -118,26 +104,15 @@ class PrimaryContact extends React.Component{
                             id={"Last Name"} //Optional.[String].Default: "".  Input ID.
                             name="Last Name" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={LastName} //Optional.[String].Default: "".
+                            value={pcln} //Optional.[String].Default: "".
                             placeholder="Last Name" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(LastName, e) => {
-                                this.setState({ LastName });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onPCLNameChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "Last Name", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
                             }}
                         />
                             </div>
@@ -159,21 +134,18 @@ class PrimaryContact extends React.Component{
                             id={"email"} //Optional.[String].Default: "".  Input ID.
                             name="email" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={email} //Optional.[String].Default: "".
+                            value={pcemail} //Optional.[String].Default: "".
                             placeholder="Username or Email" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(email, e) => {
-                                this.setState({ email });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onPCEmailChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "email", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                customFunc: email => {
+                                customFunc: pcemail => {
                                     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                    if (reg.test(String(email).toLowerCase())) {
+                                    if (reg.test(String(pcemail).toLowerCase())) {
                                         return true;
                                     } else {
                                         return "Please Enter valid email address";
@@ -199,7 +171,7 @@ class PrimaryContact extends React.Component{
                             id={"Confirmemail"} //Optional.[String].Default: "".  Input ID.
                             name="Confirm Email" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={email} //Optional.[String].Default: "".
+                            value={pcemail} //Optional.[String].Default: "".
                             placeholder="Confirm Email" //Optional.[String].Default: "".
                             classNameInput = "form-control"
                             onChange={(Confirmemail, e) => {
@@ -239,21 +211,18 @@ class PrimaryContact extends React.Component{
                             id={"Phone Number"} //Optional.[String].Default: "".  Input ID.
                             name="Phone Number" //Optional.[String].Default: "". Input name.
                             type="phone" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={PhoneNumber} //Optional.[String].Default: "".
+                            value={pcphone} //Optional.[String].Default: "".
                             placeholder="Phone Number" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(PhoneNumber, e) => {
-                                this.setState({ PhoneNumber });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onPCPhoneChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "Phone Number", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                 customFunc: PhoneNumber => {
+                                 customFunc: pcphone => {
                                     const reg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-                                     if (reg.test(String(PhoneNumber))) {
+                                     if (reg.test(String(pcphone))) {
                                         return true;
                                     } else {
                                         return "Please Enter valid Phone Number";

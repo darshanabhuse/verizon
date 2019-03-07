@@ -23,24 +23,23 @@ class GeneralInfo extends React.Component{
             StateProvince :'',
             City:'',
             StreetAddress:''
-     };
+        };
         
     }
+
     render(){
         const {
             country,
             entity_response,
             company_name,
-            entity_type,
+            company_entity,
             company_website,
-            phone_number,
-            h_street,
-            h_city,
-            h_state,
-            h_country,
-            h_zipcode
+            company_phone,
+            street_address,
+            hstate,
+            hcity,
+            hzip
         } = this.props;
-        const {Zipcode ,CompanyName, CompanyWebsite,PhoneNumber,StateProvince,City,StreetAddress} = this.state;
         let listItems = entity_response;
         let countryItems = country;
         let arr = '';
@@ -80,26 +79,15 @@ class GeneralInfo extends React.Component{
                             id={"Company Name"} //Optional.[String].Default: "".  Input ID.
                             name="Company Name" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={CompanyName} //Optional.[String].Default: "".
+                            value={company_name} //Optional.[String].Default: "".
                             placeholder="Company Name" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(CompanyName, e) => {
-                                this.setState({ CompanyName });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onCompanyNameChangeValue}  //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "Company Name", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
                             }}
                         />
                         </div>
@@ -112,7 +100,7 @@ class GeneralInfo extends React.Component{
                     </div>
                     <div className="col-lg-8">
                         <FormGroup controlId="formControlsSelect">
-                        <FormControl as="select">
+                        <FormControl as="select" onChange={this.props.onCompanyEntityChangeValue}>
                             {arr}
                             </FormControl>
                         </FormGroup>                        
@@ -130,26 +118,15 @@ class GeneralInfo extends React.Component{
                             id={"Company Website"} //Optional.[String].Default: "".  Input ID.
                             name="Company Website" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={CompanyWebsite} //Optional.[String].Default: "".
+                            value={company_website} //Optional.[String].Default: "".
                             placeholder="Company Website" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(CompanyWebsite, e) => {
-                                this.setState({ CompanyWebsite });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onCompanyWebChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "Company Website", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
                             }}
                         />
                     </div>
@@ -166,21 +143,18 @@ class GeneralInfo extends React.Component{
                             id={"Phone Number"} //Optional.[String].Default: "".  Input ID.
                             name="Phone Number" //Optional.[String].Default: "". Input name.
                             type="phone" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={PhoneNumber} //Optional.[String].Default: "".
+                            value={company_phone} //Optional.[String].Default: "".
                             placeholder="Phone Number" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(PhoneNumber, e) => {
-                                this.setState({ PhoneNumber });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onCompanyPhoneChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "Phone Number", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                 customFunc: PhoneNumber => {
+                                 customFunc: company_phone => {
                                     const reg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-                                     if (reg.test(String(PhoneNumber))) {
+                                     if (reg.test(String(company_phone))) {
                                         return true;
                                     } else {
                                         return "Please Enter valid Phone Number";
@@ -210,26 +184,15 @@ class GeneralInfo extends React.Component{
                             id={"Street Address"} //Optional.[String].Default: "".  Input ID.
                             name="Street Address" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={StreetAddress} //Optional.[String].Default: "".
+                            value={street_address} //Optional.[String].Default: "".
                             placeholder="Street Address" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(StreetAddress, e) => {
-                                this.setState({ StreetAddress });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onStreetAddChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "Street Address", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
                             }}
                         />
                     </div>
@@ -246,26 +209,15 @@ class GeneralInfo extends React.Component{
                             id={"City"} //Optional.[String].Default: "".  Input ID.
                             name="City" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={City} //Optional.[String].Default: "".
+                            value={hcity} //Optional.[String].Default: "".
                             placeholder="City" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(City, e) => {
-                                this.setState({ City });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onHCityChangeValue}//Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "City", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
                             }}
                         />
                     </div>
@@ -282,26 +234,15 @@ class GeneralInfo extends React.Component{
                             id={"State/Province"} //Optional.[String].Default: "".  Input ID.
                             name="State/Province" //Optional.[String].Default: "". Input name.
                             type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={StateProvince} //Optional.[String].Default: "".
+                            value={hstate} //Optional.[String].Default: "".
                             placeholder="State/Province" //Optional.[String].Default: "".
                             classNameInput = "form-control"
-                            onChange={(StateProvince, e) => {
-                                this.setState({ StateProvince });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
+                            onChange={this.props.onHStateChangeValue}//Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "State/Province", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
                             }}
                         />
                     </div>
@@ -314,10 +255,10 @@ class GeneralInfo extends React.Component{
                     </div>
                     <div className="col-lg-8">
                         <FormGroup controlId="formControlsSelect">
-                            <FormControl as="select">
+                            <FormControl as="select" onChange={this.props.handleHCountryChangeValue}>
                                 {countryOptions}
-                                </FormControl>
-                            </FormGroup>    
+                            </FormControl>
+                        </FormGroup>    
                     </div>
                 </div>
             </div>
@@ -328,30 +269,19 @@ class GeneralInfo extends React.Component{
                     </div>
                     <div className="col-lg-8">
                     <Textbox
-                            tabIndex="1" //Optional.[String or Number].Default: -1.
-                            id={"Zipcode"} //Optional.[String].Default: "".  Input ID.
-                            name="Zipcode" //Optional.[String].Default: "". Input name.
-                            type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={Zipcode} //Optional.[String].Default: "".
-                            placeholder="Zipcode" //Optional.[String].Default: "".
+                            tabIndex="1"
+                            id={"Zipcode"}
+                            name="Zipcode"
+                            type="text"
+                            value={hzip}
+                            placeholder="Zipcode"
                             classNameInput = "form-control"
-                            onChange={(Zipcode, e) => {
-                                this.setState({ Zipcode });
-                                console.log(e);
-                            }} //Required.[Func].Default: () => {}. Will return the value.
-                            onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                            onChange={this.props.onHZipChangeValue}
+                            onBlur={e => {}}
                             validationOption={{
-                                name: "Zipcode", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
-                                check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
-                                required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                // customFunc: email => {
-                                //     const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                                //     if (reg.test(String(email).toLowerCase())) {
-                                //         return true;
-                                //     } else {
-                                //         return "Please Enter valid email address";
-                                //     }
-                                // }
+                                name: "Zipcode",
+                                check: true,
+                                required: true,
                             }}
                         />
                     </div>
@@ -364,3 +294,5 @@ class GeneralInfo extends React.Component{
 }
 
 export default GeneralInfo;
+
+

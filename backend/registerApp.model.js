@@ -11,7 +11,7 @@ let RegisterApp = new Schema({
         type: String
     },
     phone_number: {
-        type: Number
+        type: String
     },
     h_street: {
         type: String
@@ -62,12 +62,9 @@ let RegisterApp = new Schema({
         type: String
     },
     primary_contact_phone: {
-        type: Number
-    },
-    usertype: {
         type: String
     },
-    application_id: {
+    usertype: {
         type: String
     },
     status: {
