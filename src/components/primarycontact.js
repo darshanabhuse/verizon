@@ -6,6 +6,7 @@ import {
     FormControl
 } from 'react-bootstrap';
 import { Textbox } from "react-inputs-validation";
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 class PrimaryContact extends React.Component{
 
@@ -13,10 +14,11 @@ class PrimaryContact extends React.Component{
         super(props);
         this.state = {
             Confirmemail :'',
+            pcCountryReact: '', 
         };
         
     }
-
+    
     render(){
         const {
             country,
@@ -28,15 +30,8 @@ class PrimaryContact extends React.Component{
             pccountrycode,
             vzwcontact
         } = this.props;
-        let countryItems = country;
-        let countryOptions = '';
-        if(countryItems && countryItems.length) {
-            countryOptions = countryItems.map(option => {
-                return (
-                    <option value={option.value}>{option.name}</option>
-                )
-            });
-        }
+        const { pcCountryReact } = this.state;
+        
         return(
             <div className="container wd">
                 <div className="row hr">
@@ -54,10 +49,13 @@ class PrimaryContact extends React.Component{
                             </div>
                             <div className="col-lg-8">
                                 <FormGroup controlId="formControlsSelect">
-                                    <FormControl as="select" onChange={this.props.onPCCountryChangeValue} >
-                                        {countryOptions}
-                                    </FormControl>
-                                </FormGroup> 
+                                    <CountryDropdown
+                                        value={country}
+                                        classes = "form-control"
+                                        defaultOptionLabel = "Country"
+                                        onChange = {this.props.onPCCountryChangeValue}
+                                    />
+                                </FormGroup>    
                             </div>
                         </div>
                     </div><div className="col-lg-12">

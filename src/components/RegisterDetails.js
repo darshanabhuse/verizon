@@ -89,7 +89,6 @@ class RegisterDetails extends React.Component {
 		this.setState({company_phone : value});
 	}
 	handleCompanyPhoneCountryCodeChangeValue(value) {
-		console.log(value);
 		this.setState({company_phone_countrycode : value });
 	}
 	handleStreetAddChangeValue(value) {
@@ -102,7 +101,7 @@ class RegisterDetails extends React.Component {
 		this.setState({hstate : value});
 	}
 	handleHCountryChangeValue(value) {
-		this.setState({hcountry: value.target.value});
+		this.setState({hcountry: value});
 	}
 	handleHZipChangeValue(value) {
 		this.setState({hzip : value});
@@ -178,7 +177,7 @@ class RegisterDetails extends React.Component {
 		this.setState({pccountrycode : value});
 	}
 	handlePCCountryChangeValue(value) {
-		this.setState({pccountry : value.target.value});
+		this.setState({pccountry : value});
 	}
 	handlePCVZWChangeValue(value) {
 		this.setState({vzwcontact : value});
@@ -302,6 +301,7 @@ class RegisterDetails extends React.Component {
 							onStreetAddChangeValue={this.handleStreetAddChangeValue}
 							hstate = {this.state.hstate}
 							onHStateChangeValue={this.handleHStateChangeValue}
+							hcountry = {this.state.hcountry}
 							onHCountryChangeValue = {this.handleHCountryChangeValue}
 							hcity = {this.state.hcity}
 							onHCityChangeValue={this.handleHCityChangeValue}
