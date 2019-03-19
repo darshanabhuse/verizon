@@ -3732,6 +3732,7 @@ h2 {
 }
 .partners .ts-banners {
     background-image: url(./images/TS_Banners_Partners_80.jpg);
+    right: 5.5%;
 }
 .dashboard.partners .ts-banners {
     background-image: url(./images/TS_Banners_Partners_80.jpg);

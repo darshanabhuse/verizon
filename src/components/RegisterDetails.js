@@ -58,6 +58,7 @@ class RegisterDetails extends React.Component {
 		this.handleStreetAddChangeValue = this.handleStreetAddChangeValue.bind(this);
 		this.handleHCityChangeValue = this.handleHCityChangeValue.bind(this);
 		this.handleHStateChangeValue = this.handleHStateChangeValue.bind(this);
+		this.handleHCountryChangeValue = this.handleHCountryChangeValue.bind(this);
 		this.handleHZipChangeValue = this.handleHZipChangeValue.bind(this);
 
 		this.handleProductNameChangeValue = this.handleProductNameChangeValue.bind(this);
@@ -102,6 +103,7 @@ class RegisterDetails extends React.Component {
 	}
 	handleHCountryChangeValue(value) {
 		this.setState({hcountry: value});
+		console.log(this.state.hcountry);
 	}
 	handleHZipChangeValue(value) {
 		this.setState({hzip : value});

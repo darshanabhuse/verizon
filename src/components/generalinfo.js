@@ -32,7 +32,13 @@ class GeneralInfo extends React.Component{
         };
         
     }
+    selectCountry (val) {
+        this.setState({ countryReact: val });
+    }
     
+    selectRegion (val) {
+        this.setState({ region: val });
+    }
     render(){
         const {
             country,
@@ -220,7 +226,7 @@ class GeneralInfo extends React.Component{
                         </div>
                         <div className="col-lg-8">
                             <RegionDropdown
-                                country={countryReact}
+                                country={hcountry}
                                 value={hstate}
                                 onChange={this.props.onHStateChangeValue}
                                 classes = "form-control"
