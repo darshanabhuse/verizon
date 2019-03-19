@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons / Page Icon / Design Houses</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons-/-Page-Icon-/-Design-Houses" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M60,0 C26.863,0 0,26.863 0,60 C0,93.137 26.863,120 60,120 C93.137,120 120,93.137 120,60 C120,26.863 93.137,0 60,0 M60,4 C90.879,4 116,29.122 116,60 C116,90.878 90.879,116 60,116 C29.121,116 4,90.878 4,60 C4,29.122 29.121,4 60,4" id="Page-1" fill="#000000"></path>
+        <path d="M60.444,17 L14,56.613 L31.427,56.613 L31.427,96.612 L88.376,96.612 L88.376,56.613 L105.559,56.613 L88.376,40.821 L88.376,18.612 L74.413,18.612 L74.484,28.631 L60.444,17 Z M60.481,22.225 L78.544,37.19 L78.442,22.612 L84.377,22.612 L84.377,42.577 L95.296,52.612 L84.377,52.612 L84.377,92.613 L35.428,92.613 L35.428,52.612 L24.854,52.612 L60.481,22.225 Z" id="Fill-1" fill="#000000"></path>
+        <path d="M44,65 L74.5,65 L74.5,57 L44,57 L44,65 Z M40,69 L78.5,69 L78.5,53 L40,53 L40,69 Z" id="Fill-2" fill="#000000"></path>
+        <path d="M44,85 L74.5,85 L74.5,77 L44,77 L44,85 Z M40,89 L78.5,89 L78.5,73 L40,73 L40,89 Z" id="Fill-3" fill="#000000"></path>
+    </g>
+</svg>

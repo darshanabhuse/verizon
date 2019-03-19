@@ -1,15 +1,19 @@
 {
-  "name": "open_developement_code",
+  "name": "genericusermanagement",
   "version": "1.0.0",
+  "homepage": "http://166.34.122.77:8080/genericusermanagement/",
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
     "bootstrap": "^3.4.1",
+    "copy-webpack-plugin": "^5.0.1",
     "html-webpack-plugin": "^3.2.0",
-    "mongodb": "^3.1.13",
     "react": "^16.8.2",
     "react-bootstrap": "^1.0.0-beta.5",
+    "react-bootstrap-multiselect": "^2.4.1",
+    "react-country-region-selector": "^1.4.3",
     "react-dom": "^16.8.2",
     "react-inputs-validation": "^2.1.8",
     "react-redux": "^6.0.1",
@@ -30,8 +34,9 @@
     "babel-loader": "^8.0.5"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode development"
+    "start": "webpack-dev-server --mode development --config webpack.config.js --open",
+    "build-integration": "webpack --mode development --config  webpack.config.js --progress --profile --colors --display-error-details --display-cached",
+    "postbuild-integration": "jar -cvf genericusermanagement/genericusermanagement.war -C genericusermanagement ."
   },
   "author": "",
   "license": "ISC"

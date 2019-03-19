@@ -3,49 +3,102 @@ import {
      Form,
      FormGroup,
     FormLabel, Button,
-    FormControl
+    FormControl,
+    Overlay,
+    OverlayTrigger,
+    Tooltip
      } from 'react-bootstrap';
-import { Textbox } from "react-inputs-validation";
+     import { Textbox } from "react-inputs-validation";
+     import Input from '@material-ui/core/Input';
+     import InputLabel from '@material-ui/core/InputLabel';
+     import Menu from '@material-ui/core/Menu';
+     import MenuItem from '@material-ui/core/MenuItem';
+     import ListItemText from '@material-ui/core/ListItemText';
+     import Select from '@material-ui/core/Select';
+     import Checkbox from '@material-ui/core/Checkbox';
+     import Chip from '@material-ui/core/Chip';
 class ProdcutInfo extends React.Component{
 
      constructor(props) {
           super(props);
           this.state = {
-              ProductName : '',
-              Description:''
-       };
+               ProductName : '',
+               Description:'',
+               name : [],
+               show: false,
+               modalShow : false,
+               showvnf : false
+        };
+        this.handleChange = this.handleChange.bind(this);
           
       }
+
+      handleChange(event) {
+          this.setState({ name: event.target.value });
+     }
     render(){
      const {
           product_type,
+          lob,
           platform,
           ProductName,
           Description,
           product_name,
-          lob,
           vnf_category,
           tags,
-          description
+          description,
+          lobOptionsData
      } = this.props;
      let listItems = product_type;
      let platformItems = platform;
+     let lobItems = lob;
      let arr = '';
      let platformOption = '';
-     if(listItems && listItems.length) {
+     let lobOptions ='';
+
+     console.log("lobItems*********", lobItems);
+     console.log("lobOptionsData*******", lobOptionsData);
+     if (listItems && listItems.length) {
           arr = listItems.map(option => {
           return (
                <option value={option.value}>{option.name}</option>
           )
           });
      }
-     if(platformItems && platformItems.length) {
+     if (platformItems && platformItems.length) {
           platformOption = platformItems.map(option => {
           return (
                <option value={option.value}>{option.name}</option>
           )
           });
      }
+    
+     if (lobItems && lobItems.length) {
+         lobOptions = lobItems.map(option => {
+             
+             lobOptions = Object.keys(option);
+            return (
+                 <option value={lobOptions}>{lobOptions}</option>
+            )
+            });
+     }
+     
+
+    //  if (lobItems && lobItems.length && selectedOpt !== '' || undefined) {
+    //     lobOptionsList = lobItems.map(option => {
+    //          console.log("option******", option);
+    //          lobOptions = Object.keys(option);
+             
+    //          if(lobOptions == selectedOpt) {
+    //             return (
+    //             <option value={option.value}>{option.name}</option>
+    //             )
+    //          }
+        
+    //        });
+    //        console.log("lobOptionsList*********", lobOptionsList);
+    //  }
+
         return(
             <div className="container wd">
                 <div className="row">
@@ -103,18 +156,93 @@ class ProdcutInfo extends React.Component{
                  
             </div>
             <div className="row">
-                 <div className="col-lg-3">
-                 <FormControl type="input" placeholder="Dropdown"  onChange={this.props.onLobChangeValue} />
-                 </div>
-                <div className="col-lg-3">
-                <FormControl type="input" placeholder="Dropdown"  onChange={this.props.onVNFCatChangeValue} />
+               <div className="col-lg-2">
+                 <FormGroup controlId="formControlsSelect">
+                    <FormControl as="select" id= "selectlob"  onChange={this.props.onLobChangeValue}>
+                        {lobOptions}
+                    </FormControl>
+                 </FormGroup>
+               </div>
+               <div className="col-lg-1">
+                    <OverlayTrigger
+                         key='right'
+                         placement='right'
+                         overlay={
+                              <Tooltip id={`tooltip-right`}>
+                                   <strong>Line Of Business</strong>
+                              </Tooltip>
+                         }
+                    >
+                         <Button  className="tooltip_attached" >?</Button>
+                    </OverlayTrigger>
+               </div>
+               <div className="col-lg-2">
+                    <FormGroup controlId="formControlsSelect">
+                         <FormControl as="select"  onChange={this.props.onVNFCatChangeValue} >
+                         {lobOptionsData}
+                         </FormControl>
+
+                         {vnf_category && vnf_category== "Other" && <input className = "form-control" type = "text" placeholder = "Other VNF Category" />} 
+                    </FormGroup>
+               </div>
+               <div className="col-lg-1">
+                
+                    <OverlayTrigger
+                         key='right'
+                         placement='right'
+                         overlay={
+                              <Tooltip id={`tooltip-right`}>
+                                   <strong>VNF CAtegory </strong>
+                              </Tooltip>
+                              }
+                    >
+                         <Button  className="tooltip_attached" >?</Button>
+                    </OverlayTrigger>
                  </div>
                  <div className="col-lg-6">
                     <FormGroup controlId="formControlsSelect" onChange={this.props.onPlatformChangeValue}>
-                         <FormControl as="select">
-                              {platformOption}
-                         </FormControl>
-                    </FormGroup> 
+                         <InputLabel htmlFor="select-multiple-checkbox"></InputLabel>
+                         <Select
+                                   multiple
+                                   MenuProps={{
+                                        anchorOrigin: {
+                                        vertical: "bottom",
+                                        horizontal: "left"
+                                        },
+                                        transformOrigin: {
+                                        vertical: "top",
+                                        horizontal: "left"
+                                        },
+                                        getContentAnchorEl: null
+                                   }}
+                                   className="form-control"
+                                   value={this.state.name}
+                                   onChange={this.handleChange}
+                                   input={<Input id="select-multiple-checkbox" />}
+                                   renderValue={selected => selected.join(', ')}
+                              >
+                              {
+                                   platform &&
+                                   platform.map(option => (
+                                        <MenuItem key={option.value} value={option.name}>
+                                             <Checkbox checked={this.state.name.indexOf(option.name) > -1} />
+                                             <ListItemText primary={option.name} />
+                                        </MenuItem>
+                                   ))
+                              }
+                              </Select>
+                              <OverlayTrigger
+                              key='right'
+                              placement='right'
+                              overlay={
+                                   <Tooltip id={`tooltip-right`}>
+                                        <strong>Platform </strong>
+                                   </Tooltip>
+                                   }
+                         >
+                              <Button  className="tooltip_attached" >?</Button>
+                         </OverlayTrigger>
+                         </FormGroup> 
                  </div>
             </div>
 

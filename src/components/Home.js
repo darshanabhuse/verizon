@@ -42,6 +42,7 @@ class Home extends React.Component {
                                 </ul>
                                 <div className="ng-signin-register">
                                     <div className="signin-group">
+                                    <span className="login-text">   &nbsp;&nbsp; </span>
                                         <Link className="dropdown-toggle" data-toggle="dropdown" to="/signin" id="signInMenu" role="button">
                                             <strong className="login-text">Sign in </strong></Link><span className="login-text">   &nbsp;&nbsp; </span><Link className="dropdown-toggle" data-toggle="dropdown" to="/register/1"  role="button"><strong className="login-text">Register</strong></Link>
                                         
@@ -63,17 +64,20 @@ class Home extends React.Component {
                         </div>
                     </section>
                 </div>
+                <div className="col-lg-12">
+                    <h3>Welcome to Verizon</h3>
+                </div>
                 <div className="partners">
                 <section className="intro-section pb60">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <h2>Customer/Vendor needs/Problem Statement</h2>
+                                
+                                <h2>VNS Innovation Platform (VIP)</h2>
                             </div>
                         </div>
                         <ul className="black-text-10px">
-                            <li>Lack of awareness among vendors on standards for VNF package developed for self-assessment on carrier platforms such that, the products delivered to our customers are lot more solid (from aspects of security, functionality, performance and automation).</li>
-                            <li>Lack of influence among vendor communities on self-validation based off of Verizon’s requirements.</li>
+                            <li>Power your VNF products on the Verizon network. Signup for our VNS developer program to self-validate your VNFs on our platforms and innovate on new Vitalized Network Services and bring your ideas from concept to market readiness. </li>
                         </ul>
                         <div className="row">
                             <div className="col-md-12">

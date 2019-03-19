@@ -25,6 +25,7 @@ class PrimaryContact extends React.Component{
             pcemail ,
             Confirmemail,
             pcphone,
+            pccountrycode,
             vzwcontact
         } = this.props;
         let countryItems = country;
@@ -47,11 +48,9 @@ class PrimaryContact extends React.Component{
                     <div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-4">
-                                <Form>
-                                    <FormGroup controlId="formBasicEmail">
+                                <FormGroup controlId="formBasicEmail">
                                         <FormLabel>Country User resides in<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
-                                </Form>
                             </div>
                             <div className="col-lg-8">
                                 <FormGroup controlId="formControlsSelect">
@@ -64,11 +63,9 @@ class PrimaryContact extends React.Component{
                     </div><div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-4">
-                                <Form>
-                                    <FormGroup>
+                                <FormGroup>
                                         <FormLabel>Primary Contact First Name<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
-                                </Form>
                             </div>
                             <div className="col-lg-8">
                             <Textbox
@@ -92,11 +89,9 @@ class PrimaryContact extends React.Component{
                     </div><div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-4">
-                                <Form>
-                                    <FormGroup >
+                                <FormGroup >
                                         <FormLabel>Primary Contact Last Name<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
-                                </Form>
                             </div>
                             <div className="col-lg-8">
                             <Textbox
@@ -122,11 +117,9 @@ class PrimaryContact extends React.Component{
                     <div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-4">
-                                <Form>
-                                    <FormGroup>
+                                <FormGroup>
                                         <FormLabel>Primary Contact Email<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
-                                </Form>
                             </div>
                             <div className="col-lg-8">
                             <Textbox
@@ -159,11 +152,9 @@ class PrimaryContact extends React.Component{
                     <div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-4">
-                                <Form>
-                                    <FormGroup>
+                                <FormGroup>
                                         <FormLabel>Primary Contact Email confirmation<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
-                                </Form>
                             </div>
                             <div className="col-lg-8">
                             <Textbox
@@ -199,13 +190,37 @@ class PrimaryContact extends React.Component{
                     <div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-4">
-                                <Form>
-                                    <FormGroup>
+                               <FormGroup>
                                         <FormLabel>Primary Contact Phone Number<span className="text-red">*</span></FormLabel>
                                     </FormGroup>
-                                </Form>
                             </div>
-                            <div className="col-lg-8">
+                            <div className="col-lg-8  country_phone_wrapper">
+                                <Textbox
+                                    tabIndex="1" //Optional.[String or Number].Default: -1.
+                                    id={"Country Code"} //Optional.[String].Default: "".  Input ID.
+                                    name="Country Code" //Optional.[String].Default: "". Input name.
+                                    type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
+                                    value={pccountrycode} //Optional.[String].Default: "".
+                                    placeholder="Country Code" //Optional.[String].Default: "".
+                                    classNameInput = "form-control country_code"
+                                    onChange={this.props.onPCPhoneCountryCodeChangeValue} //Required.[Func].Default: () => {}. Will return the value.
+                                    onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                                    validationOption={{
+                                        name: "Country Code", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
+                                        check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
+                                        required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
+                                        min: 2,
+                                        max: 4,
+                                        // customFunc: pccountrycode => {
+                                        //     const reg = /^\+\d{1,4}$/;
+                                        //     if (reg.test(String(pccountrycode))) {
+                                        //         return true;
+                                        //     } else {
+                                        //         return "Please Enter valid Country Code.";
+                                        //     }
+                                        // }
+                                    }}
+                                />
                             <Textbox
                             tabIndex="1" //Optional.[String or Number].Default: -1.
                             id={"Phone Number"} //Optional.[String].Default: "".  Input ID.
@@ -213,21 +228,14 @@ class PrimaryContact extends React.Component{
                             type="phone" //Optional.[String].Default: "text". Input type [text, password, phone, number].
                             value={pcphone} //Optional.[String].Default: "".
                             placeholder="Phone Number" //Optional.[String].Default: "".
-                            classNameInput = "form-control"
+                            classNameInput = "form-control phone_number"
                             onChange={this.props.onPCPhoneChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                             onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
                             validationOption={{
                                 name: "Phone Number", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
                                 check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
                                 required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                                 customFunc: pcphone => {
-                                    const reg = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-                                     if (reg.test(String(pcphone))) {
-                                        return true;
-                                    } else {
-                                        return "Please Enter valid Phone Number";
-                                    }
-                                }
+                                max: 7
                             }}
                         />
                             </div>
@@ -237,12 +245,22 @@ class PrimaryContact extends React.Component{
                     <div className="col-lg-12">
                         <div className="row">
                             <div className="col-lg-4">
-                                <FormLabel>Have you been wroking with any VZW contact(s)?
-                                            if so,please provide the name(s) of these contacts</FormLabel>
+                            {this.props.vzwcontact && this.props.vzwcontact=="Select Category" && 
+                                <FormLabel>Have you been wroking with any LOB contact(s)?
+                                if so,please provide the name(s) of these contacts</FormLabel>
+                            }
+                            {this.props.vzwcontact && this.props.vzwcontact!="Select Category" && 
+                                <FormLabel>Have you been wroking with any LOB ({this.props.vzwcontact}) contact(s)?
+                                if so,please provide the name(s) of these contacts</FormLabel>
+                            }
+                                
                                 
                             </div>
                             <div className="col-lg-8">
-                                <FormControl type="input" placeholder="Contact Name" />
+
+                            
+
+                                <FormControl type="input" placeholder="Contact Name" value="" />
                             </div>
                         </div>
                     </div>

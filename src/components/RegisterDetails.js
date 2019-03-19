@@ -9,7 +9,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import {
 	withRouter
 } from 'react-router-dom';
-
+// let lobOptionsData;
 class RegisterDetails extends React.Component {
 	constructor(...args) {
 		super(...args);
@@ -18,11 +18,13 @@ class RegisterDetails extends React.Component {
 			entity_response : '',
 			country : '',
 			product_type : '',
+			lob : '',
 			platform : '',
 			company_name : '',
 			company_entity : '',
 			company_website : '',
 			company_phone : '',
+			company_phone_countrycode : '',
 			street_address : '',
 			hcity : '',
 			hstate : '',
@@ -40,14 +42,18 @@ class RegisterDetails extends React.Component {
 			pcln : '',
 			pcemail : '',
 			pcphone : '',
-			vzwcontact : '',
+			pccountrycode : '',
+			vzwcontact : 'Select Category',
 			createddate: new Date().toLocaleString(),
-			validate: false
+			validate: false,
+			selectedOpt:'',
+			lobOptionsData : []
 		};
 		this.validateForm = this.validateForm.bind(this);
 		this.handleComapnyNameChangeValue = this.handleComapnyNameChangeValue.bind(this);
 		this.handleComapnyEntityChangeValue = this.handleComapnyEntityChangeValue.bind(this);
 		this.handleComapnyWebChangeValue = this.handleComapnyWebChangeValue.bind(this);
+		this.handleCompanyPhoneCountryCodeChangeValue = this.handleCompanyPhoneCountryCodeChangeValue.bind(this);
 		this.handleComapnyPhoneChangeValue = this.handleComapnyPhoneChangeValue.bind(this);
 		this.handleStreetAddChangeValue = this.handleStreetAddChangeValue.bind(this);
 		this.handleHCityChangeValue = this.handleHCityChangeValue.bind(this);
@@ -66,6 +72,7 @@ class RegisterDetails extends React.Component {
 		this.handlePCLNameChangeValue = this.handlePCLNameChangeValue.bind(this);
 		this.handlePCEmailChangeValue = this.handlePCEmailChangeValue.bind(this);
 		this.handlePCPhoneChangeValue = this.handlePCPhoneChangeValue.bind(this);
+		this.handlePCPhoneCountryCodeChangeValue = this.handlePCPhoneCountryCodeChangeValue.bind(this);
 		this.handlePCCountryChangeValue = this.handlePCCountryChangeValue.bind(this);
 		this.handlePCVZWChangeValue = this.handlePCVZWChangeValue.bind(this);
 	}
@@ -80,6 +87,10 @@ class RegisterDetails extends React.Component {
 	}
 	handleComapnyPhoneChangeValue(value) {
 		this.setState({company_phone : value});
+	}
+	handleCompanyPhoneCountryCodeChangeValue(value) {
+		console.log(value);
+		this.setState({company_phone_countrycode : value });
 	}
 	handleStreetAddChangeValue(value) {
 		this.setState({street_address : value});
@@ -101,10 +112,42 @@ class RegisterDetails extends React.Component {
 		this.setState({product_name : value});
 	}
 	handleProductTypeChangeValue(value) {
-		this.setState({product_typestate : value.target.valued});
+		this.setState({product_typestate : value.target.value});
 	}
-	handleLobChangeValue(value) {
-		this.setState({lob : value.target.value});
+	handleLobChangeValue(lob) {
+		this.setState(
+			{
+				selectedOpt : document.getElementById("selectlob").value,
+				vzwcontact : document.getElementById("selectlob").value
+			});
+		console.log("selectedOpt in registerDetaiks*****", this.state.selectedOpt, this.state.lob);
+		if (this.state.lob && this.state.lob.length && document.getElementById("selectlob").value == "Select Category") {
+            this.setState({
+                lobOptionsData : ""
+            })
+        } 
+		else if (this.state.lob && this.state.lob.length && document.getElementById("selectlob").value !== '' || undefined) {
+			this.setState({
+				lobOptionsData : this.state.lob.map(opt => {
+             
+					let lobOpt = Object.keys(opt);
+					let lobValue = opt[lobOpt]
+					if(lobOpt == document.getElementById("selectlob").value) {
+						console.log("lobOpt*******", lobOpt, lobValue);
+					return lobValue.map(lobSelect => {
+						return (
+							<option value={lobSelect.value}>{lobSelect.name}</option>
+					   )
+					})
+					}
+					// else if (lobOpt == "other") {
+					// 	return (
+					// 		<input type = "text" />
+					// 	)
+					// }
+				})
+			})
+		}
 	}
 	handleVNFCatChangeValue(value) {
 		this.setState({vnf_category : value.target.value});
@@ -131,6 +174,9 @@ class RegisterDetails extends React.Component {
 	handlePCPhoneChangeValue(value) {
 		this.setState({pcphone : value});
 	}
+	handlePCPhoneCountryCodeChangeValue(value) {
+		this.setState({pccountrycode : value});
+	}
 	handlePCCountryChangeValue(value) {
 		this.setState({pccountry : value.target.value});
 	}
@@ -143,7 +189,8 @@ class RegisterDetails extends React.Component {
 								entity_response : response.data.entity_type,
 								country : response.data.country,
 								product_type : response.data.product_type,
-								platform : response.data.platform
+								platform : response.data.platform,
+								lob : response.data.LOB
 						});
         });
 	}
@@ -153,28 +200,6 @@ class RegisterDetails extends React.Component {
 	}
 	validateForm(e) {
 		e.preventDefault();
-		console.log(this.state.company_name);
-		console.log(this.state.company_entity);
-		console.log(this.state.company_website);
-		console.log(this.state.company_phone);
-		console.log(this.state.street_address);
-		console.log(this.state.hstate);
-		console.log(this.state.hcity);
-		console.log(this.state.hzip);
-		console.log(this.state.product_name);
-		console.log(this.state.product_typestate);
-		console.log(this.state.lob);
-		console.log(this.state.vnf_category);
-		console.log(this.state.platformstate);
-		console.log(this.state.tags);
-		console.log(this.state.description);
-		console.log(this.state.pccountry);
-		console.log(this.state.pcfn);
-		console.log(this.state.pcln);
-		console.log(this.state.pcemail);
-		console.log(this.state.pcphone);
-		console.log(this.state.vzwcontact);
-
 		this.toggleValidating(true);
 		const {
 			company_name,
@@ -232,24 +257,24 @@ class RegisterDetails extends React.Component {
 				created_by : pcfn,
 				vzw_contact : vzwcontact
 			};
-			axios.post('http://127.0.0.1:9000/registerApp/add', regPostArray, {headers: {
-				"Content-Type": "application/json"}
-			})
-        .then(
-					res => (res.data.Status == "Success") ? this.props.history.push('/signin') : alert(res.data.error)
+			// axios.post('http://127.0.0.1:9000/registerApp/add', regPostArray, {headers: {
+			// 	"Content-Type": "application/json"}
+			// })
+        	// .then(
+			// 		res => (res.data.Status == "Success") ? this.props.history.push('/signin') : alert(res.data.error)
 					
-				);
-			
+			// );
+			alert('All Validated');
 		}
 	}   
 	render() {
 		return (
-            <div className="container">
+            <div className="container register">
 			
 			<Navigation />
 			<div className="row reg-head">
                 <div className="col-lg-12 reg-center">
-                    <div className="bold-head">Register with Us </div><br />
+                    <div className="bold-head">Register with Us </div>
                 </div>
                 <div className="col-lg-12 center">
                     <p>Please submit your company and contact informationto gain access to the Verizon Open Development website.</p>
@@ -269,6 +294,8 @@ class RegisterDetails extends React.Component {
 							onCompanyEntityChangeValue={this.handleComapnyEntityChangeValue}
 							company_website = {this.state.company_website}
 							onCompanyWebChangeValue={this.handleComapnyWebChangeValue}
+							company_phone_countrycode = {this.state.company_phone_countrycode}
+							onCompanyPhoneCountryCodeChangeValue={this.handleCompanyPhoneCountryCodeChangeValue}
 							company_phone = {this.state.company_phone}
 							onCompanyPhoneChangeValue={this.handleComapnyPhoneChangeValue}
 							street_address = {this.state.street_address}
@@ -300,6 +327,7 @@ class RegisterDetails extends React.Component {
 							onTagsChangeValue={this.handleTagsChangeValue}
 							description = {this.state.description}
 							onDescriptionChangeValue={this.handleDescriptionChangeValue}
+							lobOptionsData={this.state.lobOptionsData}
 						>
 						</ProductInfo>
 					</Tab>
@@ -315,9 +343,12 @@ class RegisterDetails extends React.Component {
 								pcemail = {this.state.pcemail}
 								onPCEmailChangeValue={this.handlePCEmailChangeValue}
 								pcphone = {this.state.pcphone}
+								pccountrycode = {this.state.pccountrycode}
+								onPCPhoneCountryCodeChangeValue = {this.handlePCPhoneCountryCodeChangeValue}
 								onPCPhoneChangeValue={this.handlePCPhoneChangeValue}
 								vzwcontact = {this.state.vzwcontact}
 								onPCVZWChangeValue={this.handlePCVZWChangeValue}
+								vzwContactLob = {this.state.lob}
 							>
 							</PrimaryContact>
 						</div>
