@@ -15,7 +15,9 @@ class AppHome extends React.Component {
           checkedAll : false,
           appsData : '',
           enableDelete : false,
-          modalShow : false
+          modalShow : false,
+          clickedButton : '',
+          editData :''
         }
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleCheckChieldElement = this.handleCheckChieldElement.bind(this);
@@ -24,13 +26,17 @@ class AppHome extends React.Component {
 		this.modalClose = this.modalClose.bind(this);
         
     }
-    handleClick() {
+    handleClick(apps) {
+        console.log("inside handle click****", event.target, apps);
 		this.setState({
-			modalShow : true
+            modalShow : true,
+            clickedButton : event.target.id,
+            editData : apps
+
 		})
 	}
 	modalClose() {
-		console.log(this.state.modalShow);
+		console.log("modal close",this.state.modalShow);
 		this.setState({
 			modalShow : false
 		})
@@ -49,30 +55,6 @@ class AppHome extends React.Component {
                 this.state.appsData.forEach((key) => {
                     key["cheked"] = false;
                 });
-                // axios.post('http://127.0.0.1:9000/registerApp/delete/'+app._id, {headers: {
-                //     "Content-Type": "application/json"}
-                // })
-                // .then(
-                //     res => {
-                //         console.log(res);
-                //         if(res.status == 200) {
-                //             let entity_response = axios.get('http://127.0.0.1:9000/registerApp/').then( response => {
-                //                 this.setState({'appsData' : response.data});
-                //                 const {
-                //                     appsData
-                //                 } = this.state;
-                //                 appsData.forEach((key) => {
-                //                     key["cheked"] = false;
-                //                 });
-                //                 this.setState({enableDelete : false})
-                //             });
-                //         }
-                //         else {
-                //             alert ('Entry Not deleted.');
-                //         }
-                //     }
-                        
-                // );
                 
                 this.setState({
                     enableDelete : false,
@@ -206,8 +188,8 @@ class AppHome extends React.Component {
                     <nav className="navbar navbar-expand-md d-none d-md-block height">
                         <div className="navbar-group container">
                                 <div>
-                                
-                                    <div className="left">
+                                <img alt="home about section" className="img-width" src="../src/images/logo.png" />
+                                    <div className="right">
                                             <strong>VNF Marketplace</strong>
                                     </div>
                                 </div>
@@ -222,31 +204,31 @@ class AppHome extends React.Component {
                          <div className="flex-container">
                                 <div>
                                     <div className="pos">
-                                    <img className="img-home" src="/src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
                                     </div>
                                     <span>Upload</span>
                                 </div>
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="/src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
                                     </div>
                                 <span>Validation</span>
                                 </div>
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="/src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
                                     </div>
                                     <span>Orchestration</span>
                                </div>  
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="/src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
                                    </div>
                                     <span>Testing</span>
                                     </div>
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="/src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
                                     </div>
                                     <span>Certification</span>
                                     </div>
@@ -266,7 +248,7 @@ class AppHome extends React.Component {
                             this.state.enableDelete && 
                             
                             <div className="btn_wrapper">
-                                <Button className="btApp" onClick={this.handleClick}>Delete</Button>
+                                <Button className="btApp" id ="delete" onClick={this.handleClick}>Delete</Button>
                             </div>
                         }
                          </div>
@@ -324,7 +306,8 @@ class AppHome extends React.Component {
                                     <td>{apps.usertype}</td>
                                     <td>{apps.timestamp}</td>
                                     <td>{apps.tags}</td>
-                                    <td><a href="javascript:void(0)"><span data-prodid={apps._id} onClick={this.handleClick}>Edit</span></a> &nbsp; <a href="javascript:void(0)"><span data-prodid={apps._id} onClick={this.handleClick}>View</span></a></td>
+                                    <td><a href="javascript:void(0)"><span data-prodid={apps._id} id = "edit" onClick={this.handleClick.bind(this, apps)}>Edit</span></a> &nbsp;
+                                    <a href="javascript:void(0)"><span data-prodid={apps._id} id = "view" onClick={this.handleClick.bind(this,apps)}>View</span></a></td>
                                 </tr>
                                 )
                             )
@@ -332,7 +315,13 @@ class AppHome extends React.Component {
 
                     </tbody>
                     </table>
-                    <ConfirmationModal show={this.state.modalShow} onHide={this.modalClose} onDelete={this.handleDeleteEntry} />
+                    <ConfirmationModal 
+                    show={this.state.modalShow} 
+                    onHide={this.modalClose} 
+                    onDelete={this.handleDeleteEntry}
+                    clickedButton={this.state.clickedButton}
+                    editData={this.state.editData}
+                    checkedField = {this.state.checked} />
             </div>
 
                 </div>

@@ -3,6 +3,7 @@ import Navigation from '../components/navigation.js';
 import GeneralInfo from '../components/generalinfo';
 import PrimaryContact from '../components/primarycontact';
 import ProductInfo from '../components/productinfo';
+import TermsnConditionsModal from '../components/termsnconditionmodal';
 import { Tabs, Tab } from "react-bootstrap";
 import axios from "axios";
 import { Link, Route, Switch } from 'react-router-dom';
@@ -33,6 +34,7 @@ class RegisterDetails extends React.Component {
 			product_name : '',
 			product_typestate: '',
 			lob : '',
+			lobName: '',
 			vnf_category: '',
 			platformstate : '',
 			tags : '',
@@ -44,11 +46,21 @@ class RegisterDetails extends React.Component {
 			pcphone : '',
 			pccountrycode : '',
 			vzwcontact : 'Select Category',
+			vzwcontactText : '',
 			createddate: new Date().toLocaleString(),
 			validate: false,
 			selectedOpt:'',
-			lobOptionsData : []
+			lobOptionsData : [],
+			modalShow : false,
+			termsvalue : 'not accept'
 		};
+
+		this.handleClick = this.handleClick.bind(this);
+		this.handleTermsOptionChange = this.handleTermsOptionChange.bind(this);
+		this.modalClose = this.modalClose.bind(this);
+		this.modalCloseCancel = this.modalCloseCancel.bind(this);
+		this.handlePrimarySelect = this.handlePrimarySelect.bind(this);
+
 		this.validateForm = this.validateForm.bind(this);
 		this.handleComapnyNameChangeValue = this.handleComapnyNameChangeValue.bind(this);
 		this.handleComapnyEntityChangeValue = this.handleComapnyEntityChangeValue.bind(this);
@@ -77,6 +89,48 @@ class RegisterDetails extends React.Component {
 		this.handlePCCountryChangeValue = this.handlePCCountryChangeValue.bind(this);
 		this.handlePCVZWChangeValue = this.handlePCVZWChangeValue.bind(this);
 	}
+	handleClick() {
+		this.setState({
+			modalShow : true
+		})
+	}
+	modalCloseCancel() {
+		this.setState({
+			modalShow : false
+		})
+	}
+	modalClose() {
+		this.setState({
+			modalShow : false
+		})
+		if(this.state.termsvalue == "accept") {
+			this.props.history.push('/signin');
+		}
+		else {
+			this.props.history.push('/');
+		}
+		
+	}
+	handlePrimarySelect(key) {
+		this.setState({
+			key : key
+		})
+		if (key == "primary_contact") {
+			if(document.getElementById("select-multiple-checkbox")) {
+				let vnf_category_value = document.getElementById("select-multiple-checkbox").value;
+				if(vnf_category_value) {
+					this.setState({
+						vzwcontact : vnf_category_value
+					})
+				}
+			}
+		}
+	}
+	handleTermsOptionChange() {
+		this.setState({
+			termsvalue : event.target.value
+		})
+	}
 	handleComapnyNameChangeValue(value) {
 		this.setState({company_name: value});
 	}
@@ -102,8 +156,14 @@ class RegisterDetails extends React.Component {
 		this.setState({hstate : value});
 	}
 	handleHCountryChangeValue(value) {
+		let ISD = this.state.country.map(opt => {
+			if(opt.name == value){
+				this.setState({
+					company_phone_countrycode : opt.ISD
+				})
+			}
+		})
 		this.setState({hcountry: value});
-		console.log(this.state.hcountry);
 	}
 	handleHZipChangeValue(value) {
 		this.setState({hzip : value});
@@ -115,41 +175,9 @@ class RegisterDetails extends React.Component {
 	handleProductTypeChangeValue(value) {
 		this.setState({product_typestate : value.target.value});
 	}
-	handleLobChangeValue(lob) {
-		this.setState(
-			{
-				selectedOpt : document.getElementById("selectlob").value,
-				vzwcontact : document.getElementById("selectlob").value
-			});
-		console.log("selectedOpt in registerDetaiks*****", this.state.selectedOpt, this.state.lob);
-		if (this.state.lob && this.state.lob.length && document.getElementById("selectlob").value == "Select Category") {
-            this.setState({
-                lobOptionsData : ""
-            })
-        } 
-		else if (this.state.lob && this.state.lob.length && document.getElementById("selectlob").value !== '' || undefined) {
-			this.setState({
-				lobOptionsData : this.state.lob.map(opt => {
-             
-					let lobOpt = Object.keys(opt);
-					let lobValue = opt[lobOpt]
-					if(lobOpt == document.getElementById("selectlob").value) {
-						console.log("lobOpt*******", lobOpt, lobValue);
-					return lobValue.map(lobSelect => {
-						return (
-							<option value={lobSelect.value}>{lobSelect.name}</option>
-					   )
-					})
-					}
-					// else if (lobOpt == "other") {
-					// 	return (
-					// 		<input type = "text" />
-					// 	)
-					// }
-				})
-			})
-		}
-	}
+	handleLobChangeValue() {
+
+			}
 	handleVNFCatChangeValue(value) {
 		this.setState({vnf_category : value.target.value});
 	}
@@ -179,21 +207,28 @@ class RegisterDetails extends React.Component {
 		this.setState({pccountrycode : value});
 	}
 	handlePCCountryChangeValue(value) {
+		let ISD = this.state.country.map(opt => {
+			if(opt.name == value){
+				this.setState({
+					pccountrycode : opt.ISD
+				})
+			}
+		})
 		this.setState({pccountry : value});
 	}
 	handlePCVZWChangeValue(value) {
-		this.setState({vzwcontact : value});
+		this.setState({vzwcontactText : value.target.value});
 	}
 	componentDidMount () {
         let entity_response = axios.get('/src/json_files/master_select.json').then( response => {
-            this.setState({
-								entity_response : response.data.entity_type,
-								country : response.data.country,
-								product_type : response.data.product_type,
-								platform : response.data.platform,
-								lob : response.data.LOB
-						});
-        });
+			this.setState({
+				entity_response : response.data.entity_type,
+				country : response.data.country,
+				product_type : response.data.product_type,
+				platform : response.data.platform,
+				lob : response.data.LOB
+			});
+		});
 	}
 
 	toggleValidating(validate) {
@@ -228,6 +263,7 @@ class RegisterDetails extends React.Component {
 		} = this.state;
 		if (!company_name && !company_entity && !company_website && !company_phone && !street_address && !hstate && !hcountry && !hcity && !hzip) {
 			alert('Please fill all fields.');
+			
 		}
 		else {
 			const regPostArray = {
@@ -265,7 +301,11 @@ class RegisterDetails extends React.Component {
 			// 		res => (res.data.Status == "Success") ? this.props.history.push('/signin') : alert(res.data.error)
 					
 			// );
-			alert('All Validated');
+
+
+			this.setState({
+				modalShow : true
+			})
 		}
 	}   
 	render() {
@@ -284,9 +324,9 @@ class RegisterDetails extends React.Component {
 				
 			</div>
 			<form onSubmit={this.validateForm}>
-			<Tabs className="border-tab" id="controlled-tab-example" activeKey={this.state.key} onSelect={key => this.setState({ key })}>
+			<Tabs className="border-tab" id="controlled-tab-example" activeKey={this.state.key} onSelect={this.handlePrimarySelect}>
 				
-					<Tab eventKey="general_info" title="General Information" >
+					<Tab defaultActiveKey={1} eventKey="general_info" title="General Information" >
 						<GeneralInfo
 							country = {this.state.country}
 							entity_response = {this.state.entity_response}
@@ -312,7 +352,7 @@ class RegisterDetails extends React.Component {
 						>
 						</GeneralInfo>
 					</Tab>
-					<Tab eventKey="product_info" title="Product Information" >
+					<Tab  eventKey="product_info" title="Product Information" >
 						<ProductInfo 
 							product_type = {this.state.product_type}
 							platform = {this.state.platform}
@@ -320,6 +360,7 @@ class RegisterDetails extends React.Component {
 							onPraductNameChangeValue={this.handleProductNameChangeValue}
 							onProductTypeChangeValue={this.handleProductTypeChangeValue}
 							lob = {this.state.lob}
+							lobName = {this.state.lobName}
 							onLobChangeValue={this.handleLobChangeValue}
 							vnf_category = {this.state.vnf_category}
 							onVNFCatChangeValue={this.handleVNFCatChangeValue}
@@ -338,6 +379,7 @@ class RegisterDetails extends React.Component {
 							<PrimaryContact 
 								country = {this.state.country}
 								onPCCountryChangeValue={this.handlePCCountryChangeValue}
+								pccountry = {this.state.pccountry}
 								pcfn = {this.state.pcfn}
 								onPCFNameChangeValue={this.handlePCFNameChangeValue}
 								pcln = {this.state.pcln}
@@ -349,6 +391,7 @@ class RegisterDetails extends React.Component {
 								onPCPhoneCountryCodeChangeValue = {this.handlePCPhoneCountryCodeChangeValue}
 								onPCPhoneChangeValue={this.handlePCPhoneChangeValue}
 								vzwcontact = {this.state.vzwcontact}
+								vzwcontactText = {this.state.vzwcontactText}
 								onPCVZWChangeValue={this.handlePCVZWChangeValue}
 								vzwContactLob = {this.state.lob}
 							>
@@ -358,7 +401,7 @@ class RegisterDetails extends React.Component {
 				
 			</Tabs>
 			</form>
-			
+			<TermsnConditionsModal onHandleTermsOptionChange={this.handleTermsOptionChange}  show={this.state.modalShow} onHide={this.modalClose} onHideCancle={this.modalCloseCancel} />
 		</div>
 		);
 	}

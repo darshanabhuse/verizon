@@ -5,6 +5,7 @@ import App from '../components/App';
 import Register from '../components/register';
 import RegisterDetails from '../components/RegisterDetails';
 import Home from '../components/Home';
+import Design from '../components/Design';
 import Home2 from '../components/Home2';
 import Dashboard from '../components/dashboard';
 import AppHome from '../components/apphome';
@@ -21,6 +22,7 @@ const RegisterRouter = () => {
                     <Route exact path="/register/:id" component={RegisterDetails} />
                     <Route exact path="/dashboard" component={Dashboard} />
                     <Route exact path="/application" component={AppHome} />
+                    <Route exact path="/designnbuild" component={Design} />
                 </Switch>
             </BrowserRouter>
 

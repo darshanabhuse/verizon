@@ -22,6 +22,7 @@ class PrimaryContact extends React.Component{
     render(){
         const {
             country,
+            pccountry,
             pcfn,
             pcln,
             pcemail ,
@@ -50,7 +51,7 @@ class PrimaryContact extends React.Component{
                             <div className="col-lg-8">
                                 <FormGroup controlId="formControlsSelect">
                                     <CountryDropdown
-                                        value={country}
+                                        value={pccountry}
                                         classes = "form-control"
                                         defaultOptionLabel = "Country"
                                         onChange = {this.props.onPCCountryChangeValue}
@@ -258,7 +259,7 @@ class PrimaryContact extends React.Component{
 
                             
 
-                                <FormControl type="input" placeholder="Contact Name" value="" />
+                                <FormControl type="input" placeholder="Contact Name" value={this.props.vzwcontactText} onChange={this.props.onPCVZWChangeValue} />
                             </div>
                         </div>
                     </div>

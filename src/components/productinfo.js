@@ -27,15 +27,51 @@ class ProdcutInfo extends React.Component{
                name : [],
                show: false,
                modalShow : false,
-               showvnf : false
-        };
+               showvnf : false,
+               lobName : [],
+               lobOptionsData : [] 
+          };
         this.handleChange = this.handleChange.bind(this);
-          
+        this.lobHandleChange = this.lobHandleChange.bind(this);   
       }
 
-      handleChange(event) {
+     handleChange(event) {
           this.setState({ name: event.target.value });
      }
+
+     lobHandleChange(event) {
+          const {
+          lob
+          } = this.props;
+          this.setState({ lobName: event.target.value});
+          
+          if (lob && lob.length && event.target.value == "Select Category") {
+               this.setState({
+                     lobOptionsData : ""
+               })
+          }
+          
+          else if (lob && lob.length && event.target.value !== '' || undefined) {
+               this.setState({
+                    lobOptionsData : lob.map(opt => {
+                         let lobOpt = Object.keys(opt);
+                         let lobValue = opt[lobOpt]
+                         for (let i =0; i< event.target.value.length; i++) {
+                         if(event.target.value [i] == lobOpt[0]) { 
+                         return lobValue.map(lobSelect => {
+                         return (
+                         <option value={lobSelect.value}>{lobSelect.name}</option>
+                    )
+               })
+          }
+          }
+                              
+                          })
+               })
+          }
+     } 
+          
+
     render(){
      const {
           product_type,
@@ -46,8 +82,7 @@ class ProdcutInfo extends React.Component{
           product_name,
           vnf_category,
           tags,
-          description,
-          lobOptionsData
+          description
      } = this.props;
      let listItems = product_type;
      let platformItems = platform;
@@ -56,8 +91,7 @@ class ProdcutInfo extends React.Component{
      let platformOption = '';
      let lobOptions ='';
 
-     console.log("lobItems*********", lobItems);
-     console.log("lobOptionsData*******", lobOptionsData);
+     
      if (listItems && listItems.length) {
           arr = listItems.map(option => {
           return (
@@ -72,33 +106,18 @@ class ProdcutInfo extends React.Component{
           )
           });
      }
-    
-     if (lobItems && lobItems.length) {
-         lobOptions = lobItems.map(option => {
-             
-             lobOptions = Object.keys(option);
-            return (
-                 <option value={lobOptions}>{lobOptions}</option>
-            )
-            });
+     if (lobItems && lobItems.length) {
+          lobOptions = lobItems.map(option => {
+               let lobOp = Object.keys(option);
+               return (
+               <MenuItem key={lobOp[0]} value={lobOp[0]}>
+               <Checkbox checked={this.state.lobName.indexOf(lobOp[0])>-1} />
+               <ListItemText primary={lobOp[0]} />
+               </MenuItem>
+               )
+          });
      }
      
-
-    //  if (lobItems && lobItems.length && selectedOpt !== '' || undefined) {
-    //     lobOptionsList = lobItems.map(option => {
-    //          console.log("option******", option);
-    //          lobOptions = Object.keys(option);
-             
-    //          if(lobOptions == selectedOpt) {
-    //             return (
-    //             <option value={option.value}>{option.name}</option>
-    //             )
-    //          }
-        
-    //        });
-    //        console.log("lobOptionsList*********", lobOptionsList);
-    //  }
-
         return(
             <div className="container wd">
                 <div className="row">
@@ -118,21 +137,21 @@ class ProdcutInfo extends React.Component{
             <div className="row">
                  <div className="col-lg-6">
                  <Textbox
-                            tabIndex="1" //Optional.[String or Number].Default: -1.
-                            id={"Product Name"} //Optional.[String].Default: "".  Input ID.
-                            name="Product Name" //Optional.[String].Default: "". Input name.
-                            type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
-                            value={product_name} //Optional.[String].Default: "".
-                            placeholder="Product Name" //Optional.[String].Default: "".
-                            classNameInput = "form-control"
-                            onChange={this.props.onPraductNameChangeValue} //Required.[Func].Default: () => {}. Will return the value.
-                            onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                            validationOption={{
-                                name: "Product Name", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
-                                check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
-                                required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
-                            }}
-                        />
+                         tabIndex="1" //Optional.[String or Number].Default: -1.
+                         id={"Product Name"} //Optional.[String].Default: "".  Input ID.
+                         name="Product Name" //Optional.[String].Default: "". Input name.
+                         type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
+                         value={product_name} //Optional.[String].Default: "".
+                         placeholder="Product Name" //Optional.[String].Default: "".
+                         classNameInput = "form-control"
+                         onChange={this.props.onPraductNameChangeValue} //Required.[Func].Default: () => {}. Will return the value.
+                         onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
+                         validationOption={{
+                              name: "Product Name", //Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
+                              check: true, //Optional.[Bool].Default: true. To determin if you need to validate.
+                              required: true, //Optional.[Bool].Default: true. To determin if it is a required field.
+                         }}
+                    />
                  </div>
                 <div className="col-lg-6">
                     <FormGroup controlId="formControlsSelect">
@@ -157,11 +176,34 @@ class ProdcutInfo extends React.Component{
             </div>
             <div className="row">
                <div className="col-lg-2">
-                 <FormGroup controlId="formControlsSelect">
-                    <FormControl as="select" id= "selectlob"  onChange={this.props.onLobChangeValue}>
-                        {lobOptions}
-                    </FormControl>
-                 </FormGroup>
+                    <FormGroup controlId="formControlsSelect">
+                    {/* <FormControl as="select" id= "selectlob" onChange={this.props.onLobChangeValue}> */}
+                         <InputLabel id= "selectlob" htmlFor="select-multiple-checkbox"></InputLabel>
+                         <Select
+                         multiple
+                         MenuProps={{
+                         anchorOrigin: {
+                         vertical: "bottom",
+                         horizontal: "left"
+                         },
+                         transformOrigin: {
+                         vertical: "top",
+                         horizontal: "left"
+                         },
+                         getContentAnchorEl: null
+                         }}
+                         className="form-control"
+                         value={this.state.lobName}
+                         onChange={this.lobHandleChange}
+                         input={<Input id="select-multiple-checkbox" />}
+                         renderValue={selected => selected.join(', ')}
+                         >
+                         {
+                         lobOptions
+                         }
+                         </Select>
+                    {/* </FormControl> */}
+                    </FormGroup>
                </div>
                <div className="col-lg-1">
                     <OverlayTrigger
@@ -179,7 +221,7 @@ class ProdcutInfo extends React.Component{
                <div className="col-lg-2">
                     <FormGroup controlId="formControlsSelect">
                          <FormControl as="select"  onChange={this.props.onVNFCatChangeValue} >
-                         {lobOptionsData}
+                         {this.state.lobOptionsData}
                          </FormControl>
 
                          {vnf_category && vnf_category== "Other" && <input className = "form-control" type = "text" placeholder = "Other VNF Category" />} 

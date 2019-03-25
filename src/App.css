@@ -26,6 +26,9 @@ html, body, .root, .carousel, .home_wrapper {
 .home_img_width {
 	width: 62%;
 }
+.homepageNav.home_img_width {
+	width: 55%;
+}
 .modal-content {
 	text-transform: initial;
 }
