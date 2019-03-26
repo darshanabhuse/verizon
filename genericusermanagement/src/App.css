@@ -425,3 +425,20 @@ html, body, .root, .carousel, .home_wrapper {
 	float: left;
 	position: inherit;
 }
+.termsnconditionModalBody p {
+	text-align: justify;
+}
+.termsnconditionModalBody .button_wrapper {
+	margin: 15px 0;
+	width: 100%;
+	text-align: center;
+}
+.button_wrapper button,
+.button_wrapper span {
+	margin-right: 20px;
+	width: auto;
+}
+.applicationPage.navbar {
+	position: inherit;
+	height: 110px !important;
+}

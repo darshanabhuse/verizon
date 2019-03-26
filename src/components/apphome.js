@@ -185,7 +185,7 @@ class AppHome extends React.Component {
             <div className="page-background">
                 <header>
                     <div className="vs-ts-nav-dropdown-overlay"></div>
-                    <nav className="navbar navbar-expand-md d-none d-md-block height">
+                    <nav className="navbar applicationPage navbar-expand-md d-none d-md-block height">
                         <div className="navbar-group container">
                                 <div>
                                 <img alt="home about section" className="img-width" src="../src/images/logo.png" />

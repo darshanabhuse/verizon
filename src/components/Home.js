@@ -16,6 +16,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         let entity_response = axios.get('https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=8f135b713f1a4487b7bbb9de394a1308').then( response => {
+            response.data.articles.length = 9;    
             this.setState({
                 newsArticle : response.data.articles
 			});

@@ -263,7 +263,6 @@ class RegisterDetails extends React.Component {
 		} = this.state;
 		if (!company_name && !company_entity && !company_website && !company_phone && !street_address && !hstate && !hcountry && !hcity && !hzip) {
 			alert('Please fill all fields.');
-			
 		}
 		else {
 			const regPostArray = {
