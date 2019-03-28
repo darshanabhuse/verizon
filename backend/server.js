@@ -35,6 +35,44 @@ registerRoutes.route('/add').post(function(req, res) {
             res.status(400).json({'Status': 'failed', 'error': 'Registration failed'});
         });
 });
+registerRoutes.route('/delete/:id').post(function(req, res) {
+    RegisterApp.findById(req.params.id, function(err, todo) {
+        if (!todo)
+            res.status(404).send("data is not found");
+        else
+            todo.remove().then(todo => {
+                res.json('Entry Deleted!');
+            })
+            .catch(err => {
+                res.status(400).send("Delete not possible");
+            });
+    });
+});
+registerRoutes.route('/:id').get(function(req, res) {
+    let id = req.params.id;
+    RegisterApp.findById(id, function(err, todo) {
+        res.json(todo);
+    });
+});
+registerRoutes.route('/update/:id').post(function(req, res) {
+    RegisterApp.findById(req.params.id, function(err, todo) {
+        if (!todo)
+            res.status(404).send("data is not found");
+        else
+            todo.primary_contact_fn = req.body.primary_contact_fn;
+            todo.primary_contact_ln = req.body.primary_contact_ln;
+            todo.product_name = req.body.product_name;
+            todo.company_name = req.body.company_name;
+            todo.vnf_category = req.body.vnf_category;
+            todo.tags = req.body.tags;
+            todo.save().then(todo => {
+                res.json('Todo updated!');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
+    });
+});
 app.use('/registerApp', registerRoutes)
 app.listen(PORT, function() {
     console.log(`Server running at http://${hostname}:${PORT}/`);

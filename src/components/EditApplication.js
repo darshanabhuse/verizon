@@ -12,12 +12,11 @@ import {
 } from 'react-router-dom';
 	// let lobOptionsData;
 	
-class RegisterDetails extends React.Component {
+class EditApplication extends React.Component {
 	constructor(...args) {
 		super(...args);
 		this.state = {
 			key: 'general_info',
-			entity_response : '',
 			country : '',
 			product_type : '',
 			lob : '',
@@ -55,7 +54,7 @@ class RegisterDetails extends React.Component {
 			lobOptionsData : [],
 			modalShow : false,
 			termsvalue : 'not accept'
-		};
+		};		
 		this.handleClick = this.handleClick.bind(this);
 		this.handleTermsOptionChange = this.handleTermsOptionChange.bind(this);
 		this.modalClose = this.modalClose.bind(this);
@@ -286,15 +285,62 @@ class RegisterDetails extends React.Component {
 		this.setState({vzwcontactText : value.target.value});
 	}
 	componentDidMount () {
+		console.log(this.state.key);
         let entity_response = axios.get('/src/json_files/master_select.json').then( response => {
             this.setState({
-								entity_response : response.data.entity_type,
-								country : response.data.country,
-								product_type : response.data.product_type,
-								platform : response.data.platform,
-								lob : response.data.LOB
-						});
-        });
+					entity_response : response.data.entity_type,
+					country : response.data.country,
+					product_type : response.data.product_type,
+					platform : response.data.platform,
+					lob : response.data.LOB
+			});
+		});
+		
+		let appIdUrl = this.props.location.search.split("=");
+		console.log("AppId is: ", appIdUrl[1]);
+		let entity_response_getAppDetails = axios.get('http://127.0.0.1:9000/registerApp/'+appIdUrl[1]).then( response => {
+			let company_phone = response.data.phone_number.split(" ");
+			this.setState({
+				company_name : response.data.company_name
+			});
+			this.setState({
+				product_type : response.data.product_type,
+				lob : '',
+				platform : '',
+				company_entity : response.data.entity_type,
+				company_website : response.data.company_website,
+				company_phone : company_phone[1],
+				company_phone_countrycode : company_phone[0],
+				street_address : response.data.h_street,
+				hcity : response.data.h_city,
+				hstate : response.data.h_state,
+				hcountry : response.data.h_country,
+				hzip : response.data.h_zipcode,
+				product_name : '',
+				product_typestate: '',
+				lob : '',
+				lobName: '',
+				vnf_category: '',
+				platformstate : '',
+				tags : '',
+				description : '',
+				pccountry : '',
+				pcfn: '',
+				pcln : '',
+				pcemail : '',
+				pcphone : '',
+				pccountrycode : '',
+				vzwcontact : 'Select Category',
+				vzwcontactText : '',
+				vzwcontact : '',
+				createddate: new Date().toLocaleString(),
+				validate: false,
+				selectedOpt:'',
+				lobOptionsData : [],
+				modalShow : false,
+				termsvalue : 'not accept'
+			});
+		});
 	}
 
 	toggleValidating(validate) {
@@ -374,9 +420,7 @@ class RegisterDetails extends React.Component {
 			// 		res => (res.data.Status == "Success") ? this.props.history.push('/signin') : alert(res.data.error)
 					
 			// 	);
-			this.setState({
-				modalShow : true
-			})
+			
 			
 		}
 	}   
@@ -478,4 +522,4 @@ class RegisterDetails extends React.Component {
 	}
 }
 
-export default RegisterDetails;
+export default EditApplication;

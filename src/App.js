@@ -5,6 +5,7 @@ import React from "react";
 //import Register from './components/register';
 import GeneralInfo from './components/generalinfo';
 import ProdcutInfo from './components/productinfo';
+import css from './App.css';
 class App extends React.Component {
 	render() {
 		return( 
