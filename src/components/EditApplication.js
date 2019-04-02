@@ -31,8 +31,11 @@ class EditApplication extends React.Component {
 			hstate : '',
 			hcountry : '',
 			hzip : '',
+			platformstateValue : '',
+			lobArrayValue : '',
 			product_name : '',
 			product_typestate: '',
+			vnfcategoryValue : '',
 			lob : '',
 			lobName: '',
 			vnf_category: '',
@@ -88,6 +91,9 @@ class EditApplication extends React.Component {
 		this.handlePCPhoneCountryCodeChangeValue = this.handlePCPhoneCountryCodeChangeValue.bind(this);
 		this.handlePCCountryChangeValue = this.handlePCCountryChangeValue.bind(this);
 		this.handlePCVZWChangeValue = this.handlePCVZWChangeValue.bind(this);
+
+
+		
 	}
 	
 	handleClick() {
@@ -104,77 +110,7 @@ class EditApplication extends React.Component {
 		this.setState({
 			modalShow : false
 		})
-		if(this.state.termsvalue == "accept") {
-			const {
-				company_name,
-				company_entity,
-				company_website,
-				company_phone_countrycode,
-				company_phone,
-				street_address,
-				hstate,
-				hcountry,
-				hcity,
-				hzip,
-				product_name,
-				product_typestate,
-				lob,
-				vnf_category,
-				platformstate,
-				tags,
-				description,
-				pccountry,
-				pcfn,
-				pcln,
-				pcemail,
-				pcphone,
-				pccountrycode,
-				vzwcontact,
-				vzwcontactText
-			} = this.state;
-			let platforms = document.getElementById("select-multiple-checkbox-platform").value;
-			let lobmultiple = document.getElementById("select-multiple-checkbox").value;
-			const regPostArray = {
-				company_name : company_name,
-				entity_type : company_entity,
-				company_website : company_website,
-				phone_number : company_phone_countrycode+' '+company_phone,
-				h_street : street_address,
-				h_city : hcity,
-				h_state : hstate,
-				h_country : hcountry,
-				h_zipcode : hzip,
-				product_name : product_name,
-				product_type : product_typestate,
-				lob : lobmultiple,
-				vnf_category : vnf_category,
-				platform : platforms,
-				tags : tags,
-				description : description,
-				primary_contact_country : pccountry,
-				primary_contact_fn : pcfn,
-				primary_contact_ln : pcln,
-				primary_contact_email : pcemail,
-				primary_contact_phone : pccountrycode + ' ' +pcphone,
-				usertype : "Admin",
-				status : "In Progress",
-				timestamp : this.state.createddate,
-				created_by : pcfn,
-				vzw_contact : vzwcontactText
-			};
-			console.log(regPostArray);
-			axios.post('http://127.0.0.1:9000/registerApp/add', regPostArray, {headers: {
-				"Content-Type": "application/json"}
-			})
-			.then(
-					res => (res.data.Status == "Success") ? this.props.history.push('/signin') : alert(res.data.error)
-					
-				);
-		}
-		else {
-			this.props.history.push('/');
-		}
-		
+			
 	}
 	handlePrimarySelect(key) {
 		this.setState({
@@ -239,6 +175,7 @@ class EditApplication extends React.Component {
 	}
 	handleProductTypeChangeValue(value) {
 		this.setState({product_typestate : value.target.value});
+		this.setState({product_type_value : value.target.value});
 	}
 	handleLobChangeValue(value) {
 	
@@ -284,9 +221,8 @@ class EditApplication extends React.Component {
 	handlePCVZWChangeValue(value) {
 		this.setState({vzwcontactText : value.target.value});
 	}
-	componentDidMount () {
-		console.log(this.state.key);
-        let entity_response = axios.get('/src/json_files/master_select.json').then( response => {
+	componentWillMount () {
+		let entity_response = axios.get('/src/json_files/master_select.json').then( response => {
             this.setState({
 					entity_response : response.data.entity_type,
 					country : response.data.country,
@@ -297,9 +233,9 @@ class EditApplication extends React.Component {
 		});
 		
 		let appIdUrl = this.props.location.search.split("=");
-		console.log("AppId is: ", appIdUrl[1]);
 		let entity_response_getAppDetails = axios.get('http://127.0.0.1:9000/registerApp/'+appIdUrl[1]).then( response => {
 			let company_phone = response.data.phone_number.split(" ");
+			let pc_phone = response.data.primary_contact_phone.split(" ");
 			this.setState({
 				company_name : response.data.company_name
 			});
@@ -308,6 +244,7 @@ class EditApplication extends React.Component {
 				lob : '',
 				platform : '',
 				company_entity : response.data.entity_type,
+				company_entity_value : response.data.entity_type,
 				company_website : response.data.company_website,
 				company_phone : company_phone[1],
 				company_phone_countrycode : company_phone[0],
@@ -316,31 +253,28 @@ class EditApplication extends React.Component {
 				hstate : response.data.h_state,
 				hcountry : response.data.h_country,
 				hzip : response.data.h_zipcode,
-				product_name : '',
-				product_typestate: '',
-				lob : '',
-				lobName: '',
-				vnf_category: '',
-				platformstate : '',
-				tags : '',
-				description : '',
-				pccountry : '',
-				pcfn: '',
-				pcln : '',
-				pcemail : '',
-				pcphone : '',
-				pccountrycode : '',
+				product_name : response.data.product_name,
+				product_type: this.state.product_type,
+				product_typestate : response.data.product_type,
+				lob : this.state.lob,
+				lobArrayValue : response.data.lob,
+				vnf_category: response.data.vnf_category,
+				vnfcategoryValue : response.data.vnf_category,
+				platformstate : this.state.platform,
+				platformstateValue : response.data.platform,
+				tags : response.data.tags,
+				description : response.data.description,
+				pccountry : response.data.primary_contact_country,
+				pcfn: response.data.primary_contact_fn,
+				pcln : response.data.primary_contact_ln,
+				pcemail : response.data.primary_contact_email,
+				pcphone : pc_phone[1],
+				pccountrycode : pc_phone[0],
 				vzwcontact : 'Select Category',
-				vzwcontactText : '',
-				vzwcontact : '',
-				createddate: new Date().toLocaleString(),
-				validate: false,
-				selectedOpt:'',
-				lobOptionsData : [],
-				modalShow : false,
-				termsvalue : 'not accept'
+				vzwcontactText : response.data.vzw_contact,
 			});
 		});
+		
 	}
 
 	toggleValidating(validate) {
@@ -412,16 +346,14 @@ class EditApplication extends React.Component {
 				created_by : pcfn,
 				vzw_contact : vzwcontactText
 			};
-			console.log(regPostArray);
-			// axios.post('http://127.0.0.1:9000/registerApp/add', regPostArray, {headers: {
-			// 	"Content-Type": "application/json"}
-			// })
-			// .then(
-			// 		res => (res.data.Status == "Success") ? this.props.history.push('/signin') : alert(res.data.error)
-					
-			// 	);
-			
-			
+			let app_id = this.props.location.search.split("=");
+            axios.post('http://127.0.0.1:9000/registerApp/update/'+app_id[1], regPostArray, {headers: {
+				"Content-Type": "application/json"}
+			})
+			.then(
+				res => (res.data.Status == "Success") ? this.props.history.push('/application') : alert(res.data.error)
+				
+			);
 		}
 	}   
 	render() {
@@ -431,11 +363,11 @@ class EditApplication extends React.Component {
 			<Navigation />
 			<div className="row reg-head">
                 <div className="col-lg-12 reg-center">
-                    <div className="bold-head">Register with Us </div>
+                    <div className="bold-head">Modify Business Application</div>
                 </div>
                 <div className="col-lg-12 center">
                     <p>Please submit your company and contact informationto gain access to the Verizon Open Development website.</p>
-                    <p className="text-red">Please use your legal corporate address. This information will be usedfor generation of legally binding documentation.</p>
+                    <p className="text-red">Please use your legal corporate address. This information will be used for generation of legally binding documentation.</p>
                 </div>
 				
 			</div>
@@ -446,6 +378,7 @@ class EditApplication extends React.Component {
 						<GeneralInfo
 							country = {this.state.country}
 							entity_response = {this.state.entity_response}
+							company_entity_value = {this.state.company_entity_value}
 							company_name = {this.state.company_name}
 							onCompanyNameChangeValue={this.handleComapnyNameChangeValue}
 							onCompanyEntityChangeValue={this.handleComapnyEntityChangeValue}
@@ -470,7 +403,9 @@ class EditApplication extends React.Component {
 					</Tab>
 					<Tab eventKey="product_info" title="Product Information" >
 						<ProductInfo 
+							wait={2000}
 							product_type = {this.state.product_type}
+							product_type_value = {this.state.product_typestate_value}
 							platform = {this.state.platform}
 							product_name = {this.state.product_name}
 							onPraductNameChangeValue={this.handleProductNameChangeValue}
@@ -479,8 +414,11 @@ class EditApplication extends React.Component {
 							lobName = {this.state.lobName}
 							onLobChangeValue={this.handleLobChangeValue}
 							vnf_category = {this.state.vnf_category}
+							vnfcategoryValue = {this.state.vnfcategoryValue}
 							onVNFCatChangeValue={this.handleVNFCatChangeValue}
 							platformstate = {this.state.platformstate}
+							lobArrayValue = {this.state.lobArrayValue}
+							platformstateValue = { this.state.platformstateValue }
 							onPlatformChangeValue={this.handlePlatformChangeValue}
 							tags = {this.state.tags}
 							onTagsChangeValue={this.handleTagsChangeValue}

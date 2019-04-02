@@ -37,6 +37,7 @@ class GeneralInfo extends React.Component{
         const {
             country,
             entity_response,
+            company_entity_value,
             company_name,
             company_entity,
             company_website,
@@ -102,8 +103,8 @@ class GeneralInfo extends React.Component{
                     </div>
                     <div className="col-lg-8">
                         <FormGroup controlId="formControlsSelect">
-                        <FormControl as="select" onChange={this.props.onCompanyEntityChangeValue}>
-                            {arr}
+                            <FormControl as="select" onChange={this.props.onCompanyEntityChangeValue} value={company_entity_value}>
+                                {arr}
                             </FormControl>
                         </FormGroup>                        
                     </div>

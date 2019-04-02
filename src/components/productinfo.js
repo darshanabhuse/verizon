@@ -33,14 +33,48 @@ class ProdcutInfo extends React.Component{
             lobOptionsData : [] 
         };
         this.handleChange = this.handleChange.bind(this);
-        this.lobHandleChange = this.lobHandleChange.bind(this);   
-    }
+        this.lobHandleChange = this.lobHandleChange.bind(this);
+     }
+     
+     componentDidUpdate(prevProps, prevState) {
+          if (prevProps.platformstateValue !== this.props.platformstateValue) {
+               let platformstateValue = this.props.platformstateValue;
+               this.setState({name : platformstateValue.split(",") });
+          }
+          if(prevProps.lobArrayValue !== this.props.lobArrayValue) {
+               let lobArrayValue = this.props.lobArrayValue;
+               this.setState({ lobName : lobArrayValue.split(",") });
 
-    handleChange(event) {
+               // Code for changing VNF Category
+               let lobArrayValueMap = lobArrayValue.split(",");
+               const {
+                    lob
+               } = this.props;
+               let lobOptionsDataHtml = [];
+               if (lob && lob.length && lobArrayValueMap.length !== 0 ) {
+                    this.setState({
+                         lobOptionsData : lob.map(opt => {
+                              let lobOpt = Object.keys(opt);
+                              let lobValue = opt[lobOpt]
+                              for(let i=0; i< lobArrayValueMap.length; i++) {
+                                   if(lobArrayValueMap[i] == lobOpt[0]) {
+                                        return lobValue.map(lobSelect => {
+                                             return (
+                                                  <option value={lobSelect.value}>{lobSelect.name}</option>
+                                             )
+                                        })
+                                   }
+                              }
+                         })
+                    })
+               }
+          }          
+     }
+     handleChange(event) {
         this.setState({ name: event.target.value });
-    }
+     }
 
-    lobHandleChange(event) {
+     lobHandleChange(event) {
         const {
 			lob
         } = this.props;
@@ -74,21 +108,25 @@ class ProdcutInfo extends React.Component{
     render(){
      const {
           product_type,
-		lob,
+          lob,
           platform,
+          platformstateValue,
           ProductName,
           Description,
           product_name,
           vnf_category,
           tags,
+          product_typestate,
+          product_type_value,
+          vnfcategoryValue,
           description
      } = this.props;
      let listItems = product_type;
      let platformItems = platform;
-	let lobItems = lob;
+     let lobItems = lob;
      let arr = '';
      let platformOption = '';
-	let lobOptions ='';
+     let lobOptions ='';
      if (listItems && listItems.length) {
           arr = listItems.map(option => {
           return (
@@ -151,7 +189,7 @@ class ProdcutInfo extends React.Component{
                  </div>
                 <div className="col-lg-6">
                     <FormGroup controlId="formControlsSelect">
-                         <FormControl as="select" onChange={this.props.onProductTypeChangeValue}>
+                         <FormControl as="select" value={product_typestate} onChange={this.props.onProductTypeChangeValue}>
                               {arr}
                          </FormControl>
                     </FormGroup>     
@@ -216,7 +254,7 @@ class ProdcutInfo extends React.Component{
                </div>
                <div className="col-lg-2">
                     <FormGroup controlId="formControlsSelect">
-                         <FormControl as="select"  onChange={this.props.onVNFCatChangeValue} >
+                         <FormControl as="select" value={vnf_category} onChange={this.props.onVNFCatChangeValue} >
                          {this.state.lobOptionsData}
                          </FormControl>
 
@@ -291,7 +329,7 @@ class ProdcutInfo extends React.Component{
             </div>
             <div className="row">
                  <div className="col-lg-3">
-                 <FormControl type="input" placeholder="Enter Tags to search" onChange={this.props.onTagsChangeValue}/>
+                 <FormControl type="input" value={tags} placeholder="Enter Tags to search" onChange={this.props.onTagsChangeValue}/>
                  </div>
             </div>
             <div className="row">

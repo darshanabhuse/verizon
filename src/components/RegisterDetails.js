@@ -163,7 +163,6 @@ class RegisterDetails extends React.Component {
 				created_by : pcfn,
 				vzw_contact : vzwcontactText
 			};
-			console.log(regPostArray);
 			axios.post('http://127.0.0.1:9000/registerApp/add', regPostArray, {headers: {
 				"Content-Type": "application/json"}
 			})
@@ -366,7 +365,6 @@ class RegisterDetails extends React.Component {
 				created_by : pcfn,
 				vzw_contact : vzwcontactText
 			};
-			console.log(regPostArray);
 			// axios.post('http://127.0.0.1:9000/registerApp/add', regPostArray, {headers: {
 			// 	"Content-Type": "application/json"}
 			// })
@@ -391,7 +389,7 @@ class RegisterDetails extends React.Component {
                 </div>
                 <div className="col-lg-12 center">
                     <p>Please submit your company and contact informationto gain access to the Verizon Open Development website.</p>
-                    <p className="text-red">Please use your legal corporate address. This information will be usedfor generation of legally binding documentation.</p>
+                    <p className="text-red">Please use your legal corporate address. This information will be used for generation of legally binding documentation.</p>
                 </div>
 				
 			</div>
