@@ -350,6 +350,10 @@ html, body, .root, .carousel, .home_wrapper {
 #controlled-tab-example-tabpane-general_info .form-control {
 	width: 50%;
 }
+#controlled-tab-example-tabpane-primary_contact .form-control.country_code,
+#controlled-tab-example-tabpane-general_info .form-control.country_code {
+	font-size: 0.81rem;
+}
 .tab-content>.tab-pane {
 	padding: 25px;
 	border: 1px solid #000;

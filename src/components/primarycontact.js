@@ -200,7 +200,7 @@ class PrimaryContact extends React.Component{
                                     name="Country Code" //Optional.[String].Default: "". Input name.
                                     type="text" //Optional.[String].Default: "text". Input type [text, password, phone, number].
                                     value={pccountrycode} //Optional.[String].Default: "".
-                                    placeholder="Country Code" //Optional.[String].Default: "".
+                                    placeholder="ISD Code" //Optional.[String].Default: "".
                                     classNameInput = "form-control country_code"
                                     onChange={this.props.onPCPhoneCountryCodeChangeValue} //Required.[Func].Default: () => {}. Will return the value.
                                     onBlur={e => {}} //Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.

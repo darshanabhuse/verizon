@@ -188,7 +188,7 @@ class AppHome extends React.Component {
                     <nav className="navbar applicationPage navbar-expand-md d-none d-md-block height">
                         <div className="navbar-group container">
                                 <div>
-                                <img alt="home about section" className="img-width" src="../src/images/logo.png" />
+                                <img alt="home about section" className="img-width" src="./src/images/logo.png" />
                                     <div className="right">
                                             <strong>VNF Marketplace</strong>
                                     </div>
@@ -204,31 +204,31 @@ class AppHome extends React.Component {
                          <div className="flex-container">
                                 <div>
                                     <div className="pos">
-                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="./src/icons/Design_Houses_120.svg" />
                                     </div>
                                     <span>Upload</span>
                                 </div>
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="./src/icons/Design_Houses_120.svg" />
                                     </div>
                                 <span>Validation</span>
                                 </div>
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="./src/icons/Design_Houses_120.svg" />
                                     </div>
                                     <span>Orchestration</span>
                                </div>  
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="./src/icons/Design_Houses_120.svg" />
                                    </div>
                                     <span>Testing</span>
                                     </div>
                                 <div>
                                 <div className="pos">
-                                    <img className="img-home" src="../src/icons/Design_Houses_120.svg" />
+                                    <img className="img-home" src="./src/icons/Design_Houses_120.svg" />
                                     </div>
                                     <span>Certification</span>
                                     </div>

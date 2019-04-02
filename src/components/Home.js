@@ -45,7 +45,7 @@ class Home extends React.Component {
                     <div className="vs-ts-nav-dropdown-overlay"></div>
                     <nav className="navbar navbar-expand-md d-none d-md-block">
                         <div className="navbar-group container">
-                            <Link to='/'><img alt="home about section" className="home_img_width" src="/src/images/logo.png" /></Link>
+                            <Link to='/'><img alt="home about section" className="home_img_width" src="./src/images/logo.png" /></Link>
 
                             
                             <div className="collapse vz-navbar-collapse" id="navbarCollapse">
@@ -91,7 +91,7 @@ class Home extends React.Component {
                 <div className="partners homepage">
                     <section className="hero_image_carousel">
                         <div>
-                            <img alt="hero_image" className="hero_image" src="/src/images/01_HOME_B.jpg" />
+                            <img alt="hero_image" className="hero_image" src="./src/images/01_HOME_B.jpg" />
                             <div className="hero_image_carousel_wrapper">
                                 <h3>Welcome to Verizon</h3>
                                 <h4>Virtualised Network Service Innovation Platform</h4>

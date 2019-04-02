@@ -19,7 +19,7 @@ class Home2 extends React.Component {
                     <div className="vs-ts-nav-dropdown-overlay"></div>
                     <nav className="navbar navbar-expand-md d-none d-md-block">
                         <div className="navbar-group container">
-                            <Link to='/'><img alt="home about section" className="home_img_width" src="/src/images/logo.png" /></Link>
+                            <Link to='/'><img alt="home about section" className="home_img_width" src="./src/images/logo.png" /></Link>
                 
                             <div className="collapse vz-navbar-collapse" id="navbarCollapse">
                                 <ul className="vz-ts-navbar-nav">

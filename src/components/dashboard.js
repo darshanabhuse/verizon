@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
                     <div className="col-lg-12 navigationBar dashboardnav">
                                 <div className="row">
                                     <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                        <img className="home_img_width" alt="home about section" src="/src/images/logo.png" />
+                                        <img className="home_img_width" alt="home about section" src="./src/images/logo.png" />
                                     </div>
                                     <div className="col-lg-2 col-md-3 col-sm-12 col-xs-12">
                                         <div className="navigation_wrapper">

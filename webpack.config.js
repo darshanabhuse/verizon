@@ -46,7 +46,7 @@ module.exports = {
          { from: 'src/fonts', to: 'src/fonts' },
          { from: 'src/icons', to: 'src/icons' },
          { from: 'src/images', to: 'src/images' },
-         { from: 'src/json_files', to: 'src/json_files' },
+         { from: 'src/jsonfiles', to: 'src/jsonfiles' },
          { from: 'src/App.css', to: 'src/App.css' },
          { from: 'src/home.css', to: 'src/home.css' },
          { from: 'src/index.css', to: 'src/index.css' }

@@ -13,7 +13,7 @@ class Design extends React.Component {
                     <div className="vs-ts-nav-dropdown-overlay"></div>
                     <nav className="navbar navbar-expand-md d-none d-md-block designnav">
                         <div className="navbar-group container">
-                            <Link to='/'><img alt="home about section" className="home_img_width" src="/src/images/logo.png" /></Link>
+                            <Link to='/'><img alt="home about section" className="home_img_width" src="./src/images/logo.png" /></Link>
 
                             
                             <div className="collapse vz-navbar-collapse" id="navbarCollapse">
@@ -61,21 +61,21 @@ class Design extends React.Component {
                         <Carousel>
                         
                             <CarouselItem>
-                                <img alt="hero_image" className="hero_image" src="/src/images/02_D-B_A_Overview.jpg" />
+                                <img alt="hero_image" className="hero_image" src="./src/images/02_D-B_A_Overview.jpg" />
                                 <div className="hero_image_carousel_wrapper">
                                     <h2>Design & Build Virtualized Network Services</h2>
                                     <p className="hero_carousel_para">Verizon offers the VNS Innovation Platform to their potential partners to design and build standards compliant VNF components which can be an active ingredient in our Virtualized Network Service Function Chains (VNSFC) which can cater to diverse applications in specific market segments (like Enterprise branch connectivity solutions with SD-WAN, Firewalls, Routers, WAN Optimization, etc., and Edge Cloud Computing applications like Edge Security, Public safety, Industrial Automation, etc.).</p>
                                 </div>
                             </CarouselItem>
                             <CarouselItem>
-                                <img alt="hero_image" className="hero_image" src="/src/images/02_D-B_B_Wearable.jpg" />
+                                <img alt="hero_image" className="hero_image" src="./src/images/02_D-B_B_Wearable.jpg" />
                                 <div className="hero_image_carousel_wrapper">
                                     <h2>Co-Creating Virtualized Network Services</h2>
                                     <p className="hero_carousel_para">With Verizon’s VNS Innovation Platform our potential partners can co-create innovative market differentiating VNFs ensuring that our VNS products and managed network services we build are solid from day one, work efficiently on our VCP and WB platforms and are supported through our Network DevOps processes with Agility.</p>
                                 </div>
                             </CarouselItem>
                             <CarouselItem>
-                                <img alt="hero_image" className="hero_image" src="/src/images/5587.jpg" />
+                                <img alt="hero_image" className="hero_image" src="./src/images/5587.jpg" />
                                 <div className="hero_image_carousel_wrapper">
                                     <h2>Enabling Self-Help Validation & Gating Criteria</h2>
                                     <p className="hero_carousel_para">Based on Verizon Cloud & White Box platforms, VNS Innovation Platform enables our potential partners to design and package their VNF products with right ingredients to self-validate their functionality and performance based on our gating criteria. In the future, we could allow the partners to do your own detailed functional and performance testing making your products much more solid on our platforms to enable designing and managing carrier grade VNS.</p>

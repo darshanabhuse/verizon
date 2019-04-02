@@ -88,7 +88,7 @@ class ConfirmationModal extends React.Component {
             <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter" centered>
                 <ModalHeader>
                     <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <img alt="home about section" src="../src/images/logo.png" />
+                        <img alt="home about section" src="./src/images/logo.png" />
                     </div>                    
                 </ModalHeader>
                 <ModalBody className="wipModalBody">

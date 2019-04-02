@@ -220,7 +220,7 @@ class RegisterDetails extends React.Component {
 		this.setState({vzwcontactText : value.target.value});
 	}
 	componentDidMount () {
-        let entity_response = axios.get('/src/json_files/master_select.json').then( response => {
+        let entity_response = axios.get('../src/jsonfiles/masterselect.json').then( response => {
 			this.setState({
 				entity_response : response.data.entity_type,
 				country : response.data.country,
